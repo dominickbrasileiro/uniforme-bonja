@@ -1,0 +1,108 @@
+.login-container {
+  width: 100%;
+  max-width: 1120px;
+  height: 100vh;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main__title {
+  display: block;
+  margin: 0 auto;
+  font-family: 'Alegreya Sans SC', -apple-system, Roboto, sans-serif;
+  font-size: 22px;
+  color: #444;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-form {
+  margin: 0 auto;
+  width: 360px;
+  max-width: 90vw;
+  padding: 30px;
+  background: #f8f8f8;
+  box-shadow: 0 0 200px rgba(0, 0, 0, .1);
+  border-radius: 8px;
+}
+
+.login-form label {
+  color: #444;
+  font-size: 12px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.login-form label:first-child {
+  margin-top: 0;
+}
+
+.login-form label .label-title {
+  margin-bottom: 8px;
+}
+
+.login-form input {
+  height: 40px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #e1e1e6;
+  line-height: 18px;
+}
+
+.login-form .recover-link {
+  display: block;
+  margin-top: 5px;
+  text-align: right;
+  text-decoration: none;
+  color: #666;
+}
+
+.login-form .recover-link:hover {
+  text-decoration: underline;
+}
+
+.login-form .button {
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 12px;
+  background: rgba(4, 210, 97, 0.7);
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 18px;
+  transition: filter .2s;
+}
+
+.login-form .button:hover {
+  filter: brightness(90%);
+}
+
+.login-form .link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  color: #41414d;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity .2s;
+}
+
+.login-form .link:hover {
+  opacity: 0.8;
+}
+
+.login-form .link svg {
+  margin-right: 8px;
+}

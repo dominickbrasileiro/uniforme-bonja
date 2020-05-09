@@ -1,0 +1,176 @@
+.newdemand-container {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 7vh;
+}
+
+.newdemand-container .content {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.newdemand-container .header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #343a40;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.newdemand-container .header * {
+  user-select: none;
+}
+
+.newdemand-container .header .logo img {
+  max-width: 60px;
+}
+
+.newdemand-container .header .brand {
+  color: #fff;
+  text-align: center;
+  margin-left: 16px;
+  font-size: 24px;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-weight: bold;
+}
+
+.newdemand-container .main-content {
+  padding: 30px 12px;
+}
+
+.newdemand-container .main-content .welcome-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #0004;
+  user-select: none;
+}
+
+.newdemand-container .main-content .welcome-group .welcome-text {
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newdemand-container .main-content .welcome-group .welcome-text a {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newdemand-container .main-content .welcome-group .exit {
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+  font-size: 16px;
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .2s;
+}
+
+.newdemand-container .main-content .welcome-group .exit:hover {
+  opacity: 0.5;
+}
+
+.newdemand-container .main-content .welcome-group .exit svg {
+  margin-right: 4px;
+}
+
+.newdemand-container .main-content .newdemand-section-title {
+  margin: 25px 0;
+  user-select: none;
+  font-size: 21px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+}
+
+.newdemand-container .main-content .newdemand-form {
+  background-color: #fff;
+  padding: 20px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 100px #0002;
+}
+
+.newdemand-container .main-content .newdemand-form .option {
+  padding: 10px 8px;
+  border: 1px solid #0002;
+  box-shadow: 0 0 5px #0002;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.newdemand-container .main-content .newdemand-form .option.selected {
+  border-color: rgb(5, 172, 80);
+  box-shadow: 0 0 5px rgb(5, 172, 80);
+}
+
+.newdemand-container .main-content .newdemand-form .option .flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.newdemand-container .main-content .newdemand-form .option .thumb {
+  border-radius: 8px;
+  margin-right: 8px;
+  max-width: 20%;
+}
+
+.newdemand-container .main-content .newdemand-form .option .thumb img {
+  max-width: 100%;
+  border-radius: inherit;
+}
+
+.newdemand-container .main-content .newdemand-form .option .name {
+  font-size: 13px;
+}
+
+.newdemand-container .main-content .newdemand-form .option .price {
+  margin-left: 8px;
+}
+
+.newdemand-container .main-content .newdemand-form .option .sizes {
+  margin: 24px 0;
+}
+
+.newdemand-container .main-content .newdemand-form .option .sizes select {
+  margin-left: 8px;
+}
+
+.newdemand-container .main-content .newdemand-form .total {
+  margin: 25px 0;
+  text-align: center;
+  font-size: 16px;
+}
+
+.newdemand-container .main-content .button {
+  padding: 10px 20px;
+  width: 100%;
+  background: rgb(5, 172, 80);
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 18px;
+  transition: all .4s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.newdemand-container .main-content .button:hover {
+  filter: brightness(90%);
+}
+
+.newdemand-container .footer {
+  position: absolute;
+  bottom: 0;
+}

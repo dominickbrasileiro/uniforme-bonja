@@ -1,0 +1,60 @@
+.deleted * {
+  text-decoration: line-through !important;
+  opacity: 0.8 !important;
+}
+
+.demand-container .card {
+  background-color: #fff;
+  margin-top: 20px;
+  padding: 30px 20px 0 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 100px #0001;
+}
+
+.demand-container .card .demand-title {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  color: #222;
+  font-size: 14px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #0004;
+}
+.demand-container .demand-items {
+  margin-top: 15px;
+}
+
+.demand-container .demand-items .item {
+  display: block;
+  margin: 10px 0;
+}
+
+.demand-container .card .demand-price {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #0004;
+  padding: 20px;
+}
+
+.demand-container .card .cancel-button {
+  width: 100%;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background: #d9534f;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 18px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.demand-container .card .cancel-button:hover {
+  filter: brightness(90%);
+}

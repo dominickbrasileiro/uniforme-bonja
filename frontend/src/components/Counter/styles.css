@@ -1,0 +1,41 @@
+.counter {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  height: 30px;
+}
+
+.counter .counter-button {
+  height: inherit;
+  width: 20%;
+  font-size: 20px;
+  color: white;
+  border: none;
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.counter .counter-button:active {
+  filter: brightness(90%);
+}
+
+.counter .counter-button.down {
+  background: #d9534f;
+}
+
+.counter .counter-button.up {
+  background: rgb(5, 172, 80);
+}
+
+.counter input {
+  height: inherit;
+  width: 60%;
+  text-align: center;
+  font-size: 15px;
+}

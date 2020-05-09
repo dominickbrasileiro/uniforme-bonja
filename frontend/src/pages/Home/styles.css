@@ -1,0 +1,118 @@
+.home-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.home-container .content {
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 7vh;
+}
+
+.home-container .header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #343a40;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.home-container .header * {
+  user-select: none;
+}
+
+.home-container .header .logo img {
+  max-width: 60px;
+}
+
+.home-container .header .brand {
+  color: #fff;
+  text-align: center;
+  margin-left: 16px;
+  font-size: 24px;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-weight: bold;
+}
+
+.home-container .main-content {
+  padding: 30px 12px;
+}
+
+.home-container .main-content .welcome-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #0004;
+  user-select: none;
+}
+
+.home-container .main-content .welcome-group .welcome-text {
+  font-weight: normal;
+}
+
+.home-container .main-content .welcome-group .exit {
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+  font-size: 16px;
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .2s;
+}
+
+.home-container .main-content .welcome-group .exit:hover {
+  opacity: 0.5;
+}
+
+.home-container .main-content .welcome-group .exit svg {
+  margin-right: 4px;
+}
+
+.home-container .main-content .options-section {
+  padding: 25px 0 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.home-container .main-content .options-section .button {
+  padding: 10px 20px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  background: rgb(5, 172, 80);
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 18px;
+  transition: filter .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.home-container .main-content .button:hover {
+  filter: brightness(90%);
+}
+
+.home-container .main-content .button .button-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-container .main-content .button .button-text svg {
+  margin-left: 5px;
+}
+
+.home-container .main-content .demands-section-title {
+  user-select: none;
+  font-size: 21px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+}

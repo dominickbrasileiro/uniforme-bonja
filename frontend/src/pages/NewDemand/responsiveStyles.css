@@ -1,0 +1,26 @@
+@media only screen and (min-width: 600px) {
+  .newdemand-container .header {
+    justify-content: center;
+  }
+
+  .newdemand-container .header .brand {
+    font-size: 32px;
+  }
+
+  .newdemand-container .main-content .newdemand-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .newdemand-container .main-content .newdemand-form .option {
+    border-color: #0005;
+    box-shadow: 0 0 5px #0002;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .newdemand-container .main-content .newdemand-form {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

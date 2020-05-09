@@ -1,0 +1,22 @@
+@media only screen and (min-width: 600px) {
+  .home-container .header {
+    justify-content: center;
+  }
+
+  .home-container .header .brand {
+    font-size: 32px;
+  }
+
+  .demands {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 75px;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .demands {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
