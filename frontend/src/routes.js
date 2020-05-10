@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 
 import SuccessMessage from './pages/SuccessMessage';
 import ErrorMessage from './pages/ErrorMessage';
@@ -14,7 +14,7 @@ import NewDemand from './pages/NewDemand';
 
 function Routes() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route path="/success" component={SuccessMessage} />
         <Route path="/error" component={ErrorMessage} />
@@ -27,7 +27,7 @@ function Routes() {
         <Route path="/demands/cancel" component={ConfirmDemandCancel} />
         <Route path="/demands/new" component={NewDemand} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
