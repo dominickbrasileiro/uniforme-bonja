@@ -1,4 +1,6 @@
 const { Router } = require('express');
+const Brute = require('express-brute');
+const BruteRedis = require('express-brute-redis');
 
 const UserController = require('./app/controllers/UserController');
 const SessionController = require('./app/controllers/SessionController');
@@ -15,8 +17,19 @@ const authMiddleware = require('./app/middlewares/auth');
 
 const routes = Router();
 
+const bruteStore = new BruteRedis({
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
+});
+
+const bruteForce = new Brute(bruteStore, {
+  failCallback: (req, res) => {
+    res.status(429).json({ error: 'Too many requests, please try again later.' });
+  },
+});
+
 routes.post('/users', UserValidator.store, UserController.store);
-routes.post('/sessions', SessionValidator.store, SessionController.store);
+routes.post('/sessions', bruteForce.prevent, SessionValidator.store, SessionController.store);
 routes.post('/recover_pin/:enrollment', RecoverPinValidator, RecoverPin);
 
 routes.use(authMiddleware);
