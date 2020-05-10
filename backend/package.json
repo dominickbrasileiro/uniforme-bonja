@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "pm2 start src/server.js",
     "dev": "nodemon src/server.js"
   },
   "devDependencies": {
@@ -26,6 +27,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.9",
     "nodemailer": "^6.4.6",
+    "pm2": "^4.4.0",
     "rate-limit-redis": "^1.7.0",
     "redis": "^3.0.2"
   }
