@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
     to: `${name} <${enrollment}@ielusc.br>`,
     subject: 'Recuperação de chave de acesso',
     html: mailMessage({
-      name, enrollment, access_pin, apiUrl: process.env.FRONTEND_URL,
+      name, enrollment, access_pin, frontendUrl: process.env.FRONTEND_URL,
     }),
   });
 
