@@ -14,7 +14,9 @@ function ConfirmNewDemand({ demand, setFunc }) {
   const history = useHistory();
   const token = localStorage.getItem('token');
 
-  async function handleConfirm() {
+  async function handleConfirm(event) {
+    const button = event.target;
+    button.disabled = true;
     try {
       await axios({
         method: 'post',
