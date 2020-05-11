@@ -146,10 +146,10 @@ function Home() {
                     {firstName}
                   </h2>
 
-                  <a href="/login" onClick={() => { localStorage.clear(); }} className="exit">
+                  <Link to="/login" onClick={() => { localStorage.clear(); }} className="exit">
                     <FiLogOut />
                     Sair
-                  </a>
+                  </Link>
                 </div>
 
                 <section className="newdemand-section">
