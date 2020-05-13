@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const demandSchema = new mongoose.Schema({
+  status: {
+    type: String,
+    default: 'created',
+  },
   user_id: {
     type: String,
   },

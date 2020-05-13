@@ -6,7 +6,10 @@ const UserController = require('./app/controllers/UserController');
 const SessionController = require('./app/controllers/SessionController');
 const DemandController = require('./app/controllers/DemandController');
 const ProfileController = require('./app/controllers/ProfileController');
-const RecoverPin = require('./app/controllers/RecoverPin');
+const CheckoutController = require('./app/controllers/CheckoutController');
+const BoletoController = require('./app/controllers/BoletoController');
+const RecoverPin = require('./app/services/RecoverPin');
+const Postback = require('./app/services/Postback');
 
 const UserValidator = require('./app/validators/UserValidator');
 const SessionValidator = require('./app/validators/SessionValidator');
@@ -28,6 +31,8 @@ const bruteForce = new Brute(bruteStore, {
   },
 });
 
+routes.post('/checkout/postback', Postback);
+
 routes.post('/users', UserValidator.store, UserController.store);
 routes.post('/sessions', bruteForce.prevent, SessionValidator.store, SessionController.store);
 routes.post('/recover_pin/:enrollment', RecoverPinValidator, RecoverPin);
@@ -38,5 +43,10 @@ routes.post('/demands', DemandValidator.store, DemandController.store);
 routes.delete('/demands/:id', DemandController.delete);
 
 routes.get('/user/demands', ProfileController.index);
+
+routes.post('/demands/checkout/:id', CheckoutController.store);
+
+routes.get('/boletos/', BoletoController.index);
+routes.get('/boletos/:demand_id', BoletoController.show);
 
 module.exports = routes;
