@@ -11,7 +11,6 @@ module.exports = {
     const { userId } = req;
     const { name, cpf } = req.body;
 
-
     const demand = await Demand.findById(demandId);
 
     if (!demand) {
@@ -51,8 +50,9 @@ module.exports = {
     const transaction = await client.transactions.create({
       amount: info.amount,
       payment_method: 'boleto',
-      boleto_expiration_date: '2020-05-12',
-      postback_url: 'http://b8634e55.ngrok.io/checkout/postback',
+      soft_descriptor: process.env.BOLETO_DESCRIPTOR,
+      boleto_instructions: process.env.BOLETO_INSTRUCTIONS,
+      postback_url: `${process.env.PAGARME_POSTBACK_URL}/checkout/postback`,
       metadata: {
         demand: {
           id: demandId,
@@ -73,6 +73,6 @@ module.exports = {
 
     await demand.updateOne({ status: transaction.status });
 
-    return res.json(transaction);
+    return res.status(204).send();
   },
 };
