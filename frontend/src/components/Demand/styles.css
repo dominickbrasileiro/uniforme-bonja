@@ -52,6 +52,10 @@
   text-transform: uppercase;
 }
 
+.demand-container .card .demand-status .status.refunded {
+  color: #382672 !important;
+}
+
 .demand-container .card .demand-status .status.refused {
   color: #d80700 !important;
   text-transform: uppercase;

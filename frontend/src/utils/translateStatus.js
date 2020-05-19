@@ -14,4 +14,8 @@ export default function translateStatus(status, callback) {
   if (status === 'refused') {
     callback('Recusado');
   }
+
+  if (status === 'refunded') {
+    callback('Estornado');
+  }
 }
