@@ -21,7 +21,7 @@ function Checkout() {
   const [isLoading, setLoading] = useState(false);
 
   const { demandId } = useParams();
-  const demandPrice = 200.9;
+  const demandPrice = useQuery().get('amount');
   const cpf = useQuery().get('cpf');
   const email = useQuery().get('email');
   const name = useQuery().get('name');

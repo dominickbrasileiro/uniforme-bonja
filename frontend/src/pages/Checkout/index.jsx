@@ -7,6 +7,8 @@ import { useHistory, useParams, Link } from 'react-router-dom';
 import { MdArrowBack } from 'react-icons/md';
 import ReactLoading from 'react-loading';
 
+import useQuery from '../../utils/useQuery';
+
 import './styles.css';
 
 import formatPhone from '../../utils/formatPhone';
@@ -27,6 +29,7 @@ function Checkout() {
   const [isLoading, setLoading] = useState(false);
   const token = localStorage.getItem('token');
   const { demandId } = useParams();
+  const amount = useQuery().get('amount');
 
   useEffect(() => {
     const number = formatedPhone.replace(/[()-\s]/g, '');
@@ -110,6 +113,7 @@ function Checkout() {
       email,
       cpf: cpfValue,
       phone,
+      amount,
     });
 
     history.push(`/checkout/credit_card/${demandId}?${parsed}`);
