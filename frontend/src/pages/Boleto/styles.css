@@ -1,0 +1,119 @@
+.boleto-container {
+  width: 100%;
+  max-width: 1120px;
+  height: 100vh;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boleto-content {
+  margin: 0 auto;
+  width: 360px;
+  max-width: 90vw;
+  background: #f8f8f8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  border-radius: 4px 4px 2px 2px;
+}
+
+.boleto-content .title {
+  background-color: #2980b9;
+  border-radius: 4px 4px 0 0 ;
+  color: #ffffff;
+  padding: 10px 20px 10px 10px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.boleto-content.generated .title {
+  background-color: rgb(5, 172, 80) !important;
+}
+
+.boleto-content .title a {
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+}
+
+.boleto-content .message {
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+.boleto-content .message > p {
+  text-align: center;
+  font-size: 19px;
+  margin: 10px 0 18px 0;
+}
+
+.boleto-content .message .boleto-info .item {
+  margin: 12px 0;
+}
+
+.boleto-content .message .boleto-info .item .key {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.boleto-content .boleto-info .item .value {
+  line-height: 1.3;
+}
+
+.boleto-container .boleto-info .item .status {
+  color: #d35400;
+  font-weight: bold;
+}
+
+.boleto-container .boleto-info .item .status.paid {
+  color: rgb(5, 172, 80) !important;
+  text-transform: uppercase;
+}
+
+.boleto-content .button-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px 10px 20px;
+}
+
+.boleto-content .button {
+  width: 100%;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  background: #2980b9;
+  font-weight: 700;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 18px;
+  transition: filter .2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boleto-content.generated .button {
+  background: rgb(5, 172, 80);
+}
+
+.boleto-content .button svg {
+  margin-left: 8px;
+}
+
+.boleto-content .button:hover {
+  filter: brightness(90%);
+}

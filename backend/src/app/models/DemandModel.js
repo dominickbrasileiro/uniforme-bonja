@@ -5,6 +5,10 @@ const demandSchema = new mongoose.Schema({
     type: String,
     default: 'created',
   },
+  payment_method: {
+    type: String,
+    default: null,
+  },
   user_id: {
     type: String,
   },

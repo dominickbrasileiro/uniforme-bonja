@@ -29,8 +29,10 @@ module.exports = {
     "no-alert": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "no-underscore-dangle": "off",
     "radix": "off",
+    "camelcase": "off",
     "no-restricted-globals": "off"
   },
 };

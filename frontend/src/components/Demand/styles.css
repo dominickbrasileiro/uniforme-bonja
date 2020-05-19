@@ -6,7 +6,7 @@
 .demand-container .card {
   background-color: #fff;
   margin-top: 20px;
-  padding: 30px 20px 0 20px;
+  padding: 30px 20px 20px 20px;
   border-radius: 8px;
   box-shadow: 0 0 100px #0001;
 }
@@ -37,10 +37,65 @@
   padding: 20px;
 }
 
+.demand-container .card .demand-status {
+  text-align: center;
+  font-size: 15px;
+}
+
+.demand-container .card .demand-status .status {
+  color: #d35400;
+  font-weight: bold;
+}
+
+.demand-container .card .demand-status .status.paid {
+  color: rgb(5, 172, 80) !important;
+  text-transform: uppercase;
+}
+
+.demand-container .card .demand-status .status.refused {
+  color: #d80700 !important;
+  text-transform: uppercase;
+}
+
+.demand-container .card .details-button {
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background: #2980b9;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 18px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.demand-container .card .payment-button {
+  width: 100%;
+  padding: 10px 20px;
+  margin-bottom: 8px;
+  background: #2980b9;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 18px;
+  cursor: pointer;
+  transition: .2s;
+}
+
 .demand-container .card .cancel-button {
   width: 100%;
   padding: 10px 20px;
-  margin-bottom: 20px;
   background: #d9534f;
   border: 0;
   border-radius: 2px;

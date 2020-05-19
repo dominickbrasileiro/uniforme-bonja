@@ -3,12 +3,27 @@ const qs = require('qs');
 
 const Demand = require('../models/DemandModel');
 const Boleto = require('../models/BoletoModel');
+const Transaction = require('../models/TransactionModel');
 
 module.exports = async (req, res) => {
   const { current_status, id: tid } = req.body;
-  const { amount, boleto_url, boleto_barcode } = req.body.transaction;
+  const {
+    amount,
+    payment_method,
+    boleto_url,
+    boleto_barcode,
+    boleto_expiration_date,
+    card_holder_name,
+    card_first_digits,
+    card_last_digits,
+    card_brand,
+    installments,
+    refuse_reason,
+  } = req.body.transaction;
   const { id, owner_id } = req.body.transaction.metadata.demand;
   const { 'x-hub-signature': signature } = req.headers;
+
+  const isBoleto = payment_method === 'boleto';
 
   try {
     pagarme.postback.verifySignature(
@@ -22,25 +37,50 @@ module.exports = async (req, res) => {
 
   const demand = await Demand.findById(id);
 
-  await demand.updateOne({ status: current_status });
+  await demand.updateOne({ status: current_status, payment_method });
 
-  let boleto = await Boleto.findOne().where({ tid });
+  if (isBoleto) {
+    let boleto = await Boleto.findOne().where({ tid });
 
-  if (boleto) {
-    await boleto.updateOne({ current_status });
+    if (boleto) {
+      await boleto.updateOne({ current_status });
+    } else {
+      boleto = new Boleto({
+        owner_id,
+        demand_id: id,
+        tid,
+        current_status,
+        amount,
+        boleto_url,
+        boleto_barcode,
+        boleto_expiration_date,
+      });
+
+      await boleto.save();
+    }
   } else {
-    boleto = new Boleto({
-      owner_id,
-      demand_id: id,
-      tid,
-      current_status,
-      amount,
-      boleto_url,
-      boleto_barcode,
-    });
+    let transaction = await Transaction.findOne().where({ tid });
 
-    await boleto.save();
+    if (transaction) {
+      await transaction.updateOne({ current_status });
+    } else {
+      transaction = new Transaction({
+        owner_id,
+        demand_id: id,
+        tid,
+        current_status,
+        refuse_reason,
+        amount,
+        card_holder_name,
+        card_first_digits,
+        card_last_digits,
+        card_brand,
+        installments,
+      });
+
+      await transaction.save();
+    }
   }
 
-  return res.json(boleto);
+  return res.status(204).send();
 };

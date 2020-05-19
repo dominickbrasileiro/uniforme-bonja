@@ -292,7 +292,7 @@ function Home() {
                     </div>
 
                     <div className="total">
-                      <span className="text">Preço:</span>
+                      <span className="text">Valor:</span>
                       {' '}
                       <strong>
                         <span className="value">{formatBRL(total)}</span>

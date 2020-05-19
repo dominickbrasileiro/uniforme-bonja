@@ -1,4 +1,3 @@
-
 const Demand = require('../models/DemandModel');
 
 module.exports = {
@@ -6,13 +5,12 @@ module.exports = {
     const id = req.userId;
 
     const demands = await Demand.find({ user_id: id })
-      .sort('deleted')
-      .sort('createdAt')
+      .sort([['createdAt', -1]])
       .exec((error, result) => {
         if (error) throw error;
-
-        return res.json(result);
+        res.json(result);
       });
+
 
     return demands;
   },

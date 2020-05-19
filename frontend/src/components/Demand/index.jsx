@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import queryString from 'query-string';
 
+import translateStatus from '../../utils/translateStatus';
 import formatBRL from '../../utils/formatBRL';
 
 import './styles.css';
@@ -10,6 +11,15 @@ import itemsNameAndPrice from '../../assets/items.json';
 
 function Demand({ demand }) {
   const history = useHistory();
+  const [status, setStatus] = useState(demand.status);
+
+  useEffect(() => {
+    translateStatus(status, setStatus);
+  }, [status]);
+
+  function handleClickPayment() {
+    history.push(`/demands/checkout/${demand._id}`);
+  }
 
   function handleClickCancel() {
     const parsed = queryString.stringify({
@@ -17,6 +27,10 @@ function Demand({ demand }) {
       price: demand.price,
     });
     history.push(`/demands/cancel?${parsed}`);
+  }
+
+  function handleClickDetails() {
+    history.push(`/boletos/${demand._id}`);
   }
 
   function renderItems() {
@@ -56,11 +70,48 @@ function Demand({ demand }) {
         </div>
 
         <div className="demand-price">
-          <strong>Preço: </strong>
+          <strong>Valor: </strong>
           {formatBRL(demand.price)}
         </div>
 
-        {!demand.deleted ? <button className="cancel-button" type="button" onClick={handleClickCancel}>Cancelar pedido</button> : ''}
+        {demand.status !== 'created' ? (
+          <div className="demand-status">
+            Situação:
+            {' '}
+            <span className={`status ${demand.status}`}>
+              {status}
+            </span>
+          </div>
+        ) : ''}
+
+        {!demand.deleted && demand.payment_method === 'boleto' && demand.status !== 'paid' && demand.status !== 'refused' && demand.status !== 'created' ? (
+          <button
+            className="details-button"
+            type="button"
+            onClick={handleClickDetails}
+          >
+            Ver Detalhes
+          </button>
+        ) : ''}
+
+        {!demand.deleted && demand.status === 'created' ? (
+          <>
+            <button
+              className="payment-button"
+              type="button"
+              onClick={handleClickPayment}
+            >
+              Pagar
+            </button>
+            <button
+              className="cancel-button"
+              type="button"
+              onClick={handleClickCancel}
+            >
+              Cancelar pedido
+            </button>
+          </>
+        ) : ''}
       </div>
     </div>
   );

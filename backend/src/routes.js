@@ -14,6 +14,7 @@ const Postback = require('./app/services/Postback');
 const UserValidator = require('./app/validators/UserValidator');
 const SessionValidator = require('./app/validators/SessionValidator');
 const DemandValidator = require('./app/validators/DemandValidator');
+const CheckoutValidator = require('./app/validators/CheckoutValidator');
 const RecoverPinValidator = require('./app/validators/RecoverPinValidator');
 
 const authMiddleware = require('./app/middlewares/auth');
@@ -44,7 +45,7 @@ routes.delete('/demands/:id', DemandController.delete);
 
 routes.get('/user/demands', ProfileController.index);
 
-routes.post('/demands/checkout/:id', CheckoutController.store);
+routes.post('/demands/checkout/:id', CheckoutValidator.store, CheckoutController.store);
 
 routes.get('/boletos/', BoletoController.index);
 routes.get('/boletos/:demand_id', BoletoController.show);

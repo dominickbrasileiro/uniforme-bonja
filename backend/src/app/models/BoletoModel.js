@@ -8,6 +8,7 @@ const boletoSchema = new mongoose.Schema({
   amount: Number,
   boleto_url: String,
   boleto_barcode: String,
+  boleto_expiration_date: String,
 }, { timestamps: true });
 
 module.exports = mongoose.model('Boleto', boletoSchema);
