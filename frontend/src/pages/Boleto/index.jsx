@@ -73,11 +73,6 @@ function Boleto() {
 
           <div className="boleto-info">
             <div className="item">
-              <span className="key">ID:</span>
-              <span className="value">{boleto.tid}</span>
-            </div>
-
-            <div className="item">
               <span className="key">Linha digitável:</span>
               <span className="value">
                 {boleto.boleto_barcode}

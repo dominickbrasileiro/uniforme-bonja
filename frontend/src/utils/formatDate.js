@@ -4,7 +4,7 @@ function formatDate(iso) {
   const date = new Date(iso);
 
   const day = String(date.getDate());
-  const month = String(date.getMonth());
+  const month = String(date.getMonth() + 1);
   const year = String(date.getFullYear());
 
   const twoDigitDay = day.length > 1 ? day : `0${day}`;
