@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import queryString from 'query-string';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { MdArrowBack } from 'react-icons/md';
 import { FaPrint } from 'react-icons/fa';
