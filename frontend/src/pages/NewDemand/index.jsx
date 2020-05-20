@@ -48,7 +48,7 @@ function Home() {
 
   const defaultCalcaAmount = useQuery().get('calca') || 0;
   const [calcaAmount, setCalcaAmount] = useState(defaultCalcaAmount);
-  const [calcaSize, setCalcaSize] = useState('M');
+  const [calcaSize, setCalcaSize] = useState('M - Feminina');
 
   const [total, setTotal] = useState(0);
 
