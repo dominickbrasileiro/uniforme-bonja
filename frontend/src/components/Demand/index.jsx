@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import queryString from 'query-string';
 
 import translateStatus from '../../utils/translateStatus';
 import formatBRL from '../../utils/formatBRL';
@@ -22,11 +21,7 @@ function Demand({ demand }) {
   }
 
   function handleClickCancel() {
-    const parsed = queryString.stringify({
-      demand: demand._id,
-      price: demand.price,
-    });
-    history.push(`/demands/cancel?${parsed}`);
+    history.push(`/demands/cancel/${demand._id}`);
   }
 
   function handleClickDetails() {

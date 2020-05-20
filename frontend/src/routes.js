@@ -27,7 +27,7 @@ function Routes() {
         <Route path="/forgot_pin" component={RecoverPin} />
         <Route path="/f_timer" component={RecoverPinTimer} />
         <Route path="/" exact component={Home} />
-        <Route path="/demands/cancel" component={ConfirmDemandCancel} />
+        <Route path="/demands/cancel/:demandId" component={ConfirmDemandCancel} />
         <Route path="/demands/new" component={NewDemand} />
         <Route path="/demands/checkout/:demandId" component={Checkout} />
         <Route path="/checkout/credit_card/:demandId" component={CreditCardCheckout} />

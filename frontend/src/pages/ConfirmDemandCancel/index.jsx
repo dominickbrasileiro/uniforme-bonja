@@ -1,23 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import { MdArrowBack } from 'react-icons/md';
 import formatBRL from '../../utils/formatBRL';
 
 import './styles.css';
 
-import useQuery from '../../utils/useQuery';
-
 function ConfirmDemandCancel() {
+  const token = localStorage.getItem('token');
   const history = useHistory();
-  const demandId = useQuery().get('demand');
-  const demandPrice = useQuery().get('price');
+  const { demandId } = useParams();
+  const [demand, setDemand] = useState({});
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const demandResult = await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/demands/${demandId}`,
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+
+        const isDeleted = demandResult.data.deleted;
+
+        if (!isDeleted) {
+          setDemand(demandResult.data);
+        } else {
+          history.push('/');
+        }
+      } catch (error) {
+        history.push('/');
+      }
+    }
+    fetchData();
+  }, []);
 
   async function handleCancel(event) {
     const button = event.target;
     button.disabled = true;
-    const token = localStorage.getItem('token');
+
     try {
       await axios({
         method: 'delete',
@@ -29,7 +53,7 @@ function ConfirmDemandCancel() {
 
       const parsed = queryString.stringify({
         title: 'Pedido cancelado com sucesso!',
-        message: `Seu pedido no valor de ${formatBRL(demandPrice)} foi cancelado com sucesso.`,
+        message: `Seu pedido no valor de ${formatBRL(demand.price)} foi cancelado com sucesso.`,
         redirect: '/',
         buttonText: 'Ver Pedidos',
       });
@@ -55,26 +79,28 @@ function ConfirmDemandCancel() {
 
   return (
     <div className="confirm-cancel-container">
-      <div className="confirm-cancel-content">
-        <div className="title">
-          <Link to="/">
-            <MdArrowBack size={22} />
-          </Link>
-          <span className="text">Confirmar cancelamento</span>
+      {demand.price ? (
+        <div className="confirm-cancel-content">
+          <div className="title">
+            <Link to="/">
+              <MdArrowBack size={22} />
+            </Link>
+            <span className="text">Confirmar cancelamento</span>
+          </div>
+          <div className="message">
+            Deseja cancelar o pedido #
+            <strong>{demandId}</strong>
+            {' '}
+            no valor de
+            {' '}
+            <strong>{formatBRL(demand.price)}</strong>
+            ?
+          </div>
+          <div className="button-container">
+            <button type="button" className="button success" onClick={handleCancel}>Confirmar</button>
+          </div>
         </div>
-        <div className="message">
-          Deseja cancelar o pedido #
-          <strong>{demandId}</strong>
-          {' '}
-          no valor de
-          {' '}
-          <strong>{formatBRL(demandPrice)}</strong>
-          ?
-        </div>
-        <div className="button-container">
-          <button type="button" className="button success" onClick={handleCancel}>Confirmar</button>
-        </div>
-      </div>
+      ) : ''}
     </div>
   );
 }
