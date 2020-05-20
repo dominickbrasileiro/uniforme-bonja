@@ -7,8 +7,6 @@ import { useHistory, useParams, Link } from 'react-router-dom';
 import { MdArrowBack } from 'react-icons/md';
 import ReactLoading from 'react-loading';
 
-import useQuery from '../../utils/useQuery';
-
 import './styles.css';
 
 import formatPhone from '../../utils/formatPhone';
@@ -17,6 +15,7 @@ import formatCpf from '../../utils/formatCpf';
 const PHONE_REGEX = /^\+(?:[0-9]?){6,14}[0-9]$/;
 
 function Checkout() {
+  const token = localStorage.getItem('token');
   const history = useHistory();
   const [paymentMethod, setPaymentMethod] = useState('');
   const [name, setName] = useState(JSON.parse(localStorage.getItem('user')).name || '');
@@ -27,9 +26,33 @@ function Checkout() {
   const [formatedPhone, setFormatedPhone] = useState('');
   const [isValid, setValidation] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  const token = localStorage.getItem('token');
+  const [amount, setAmount] = useState(0);
   const { demandId } = useParams();
-  const amount = useQuery().get('amount');
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const demandResult = await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/demands/${demandId}`,
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+
+        const isDeleted = demandResult.data.deleted;
+
+        if (!isDeleted) {
+          setAmount(demandResult.data.price);
+        } else {
+          history.push('/');
+        }
+      } catch (error) {
+        history.push('/');
+      }
+    }
+    fetchData();
+  }, [demandId]);
 
   useEffect(() => {
     const number = formatedPhone.replace(/[()-\s]/g, '');
@@ -122,169 +145,172 @@ function Checkout() {
 
   return (
     <div className="checkout-container">
-      <div className="checkout-content">
-        <div className="title">
-          <Link to="/">
-            <MdArrowBack size={22} />
-          </Link>
-          <span className="text">Pagamento</span>
-        </div>
+      {amount ? (
 
-        <div className="message">
-          <div className="payment-methods">
-            <label className="input-label" htmlFor="group-input">
-              <span className="label-title">Forma de pagamento</span>
-              <select
-                value={paymentMethod}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              >
-                <option value="" disabled>Selecione a forma de pagamento</option>
-                <option value="boleto">Boleto Bancário</option>
-                <option value="credit_card">Cartão de Crédito</option>
-              </select>
-            </label>
+        <div className="checkout-content">
+          <div className="title">
+            <Link to="/">
+              <MdArrowBack size={22} />
+            </Link>
+            <span className="text">Pagamento</span>
+          </div>
 
-            {paymentMethod === 'boleto' ? (
-              <>
-                <form className="payment-form" onSubmit={handleBoleto}>
-                  <label className="input-label" htmlFor="name-input">
-                    <span className="label-title">Nome completo</span>
-                    <input
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Ex: Vanderlei Lopes"
-                      type="text"
-                      id="name-input"
-                      required
-                      pattern="[a-zA-Z\s]*"
-                      autoComplete="off"
-                    />
-                  </label>
+          <div className="message">
+            <div className="payment-methods">
+              <label className="input-label" htmlFor="group-input">
+                <span className="label-title">Forma de pagamento</span>
+                <select
+                  value={paymentMethod}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                >
+                  <option value="" disabled>Selecione a forma de pagamento</option>
+                  <option value="boleto">Boleto Bancário</option>
+                  <option value="credit_card">Cartão de Crédito</option>
+                </select>
+              </label>
 
-                  <label className="input-label" htmlFor="email-input">
-                    <span className="label-title">E-mail</span>
-                    <input
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Ex: vanderlei.lopes@gmail.com"
-                      type="text"
-                      id="email-input"
-                      required
-                      autoComplete="off"
-                    />
-                  </label>
+              {paymentMethod === 'boleto' ? (
+                <>
+                  <form className="payment-form" onSubmit={handleBoleto}>
+                    <label className="input-label" htmlFor="name-input">
+                      <span className="label-title">Nome completo</span>
+                      <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Ex: Vanderlei Lopes"
+                        type="text"
+                        id="name-input"
+                        required
+                        pattern="[a-zA-Z\s]*"
+                        autoComplete="off"
+                      />
+                    </label>
 
-                  <label className="input-label" htmlFor="cpf-input">
-                    <span className="label-title">CPF</span>
-                    <input
-                      value={formatedCpf}
-                      onChange={(e) => setFormatedCpf(formatCpf(e.target.value))}
-                      placeholder="Ex: 349.101.930-30"
-                      type="text"
-                      id="cpf-input"
-                    />
-                  </label>
+                    <label className="input-label" htmlFor="email-input">
+                      <span className="label-title">E-mail</span>
+                      <input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Ex: vanderlei.lopes@gmail.com"
+                        type="text"
+                        id="email-input"
+                        required
+                        autoComplete="off"
+                      />
+                    </label>
 
-                  <label className="input-label" htmlFor="phone-input">
-                    <span className="label-title">Telefone</span>
-                    <input
-                      value={formatedPhone}
-                      onChange={(e) => setFormatedPhone(formatPhone(e.target.value))}
-                      placeholder="Ex: (47) 99787-3675"
-                      type="text"
-                      id="phone-input"
-                    />
-                  </label>
+                    <label className="input-label" htmlFor="cpf-input">
+                      <span className="label-title">CPF</span>
+                      <input
+                        value={formatedCpf}
+                        onChange={(e) => setFormatedCpf(formatCpf(e.target.value))}
+                        placeholder="Ex: 349.101.930-30"
+                        type="text"
+                        id="cpf-input"
+                      />
+                    </label>
 
-                  <button
-                    type="submit"
-                    className="button confirm"
-                    id="boleto-confirm-button"
-                    onClick={handleBoleto}
-                    disabled={!isValid}
-                  >
-                    <ReactLoading
-                      className={`loading ${isLoading ? 'active' : ''}`}
-                      type="cylon"
-                      color="#fff"
-                      height="18px"
-                      width="18px"
-                    />
-                    Gerar Boleto
-                  </button>
+                    <label className="input-label" htmlFor="phone-input">
+                      <span className="label-title">Telefone</span>
+                      <input
+                        value={formatedPhone}
+                        onChange={(e) => setFormatedPhone(formatPhone(e.target.value))}
+                        placeholder="Ex: (47) 99787-3675"
+                        type="text"
+                        id="phone-input"
+                      />
+                    </label>
 
-                </form>
-              </>
-            ) : ''}
+                    <button
+                      type="submit"
+                      className="button confirm"
+                      id="boleto-confirm-button"
+                      onClick={handleBoleto}
+                      disabled={!isValid}
+                    >
+                      <ReactLoading
+                        className={`loading ${isLoading ? 'active' : ''}`}
+                        type="cylon"
+                        color="#fff"
+                        height="18px"
+                        width="18px"
+                      />
+                      Gerar Boleto
+                    </button>
 
-            {paymentMethod === 'credit_card' ? (
-              <>
-                <form className="payment-form">
-                  <label className="input-label" htmlFor="name-input">
-                    <span className="label-title">Nome completo</span>
-                    <input
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Ex: Vanderlei Lopes"
-                      type="text"
-                      id="name-input"
-                      required
-                      pattern="[a-zA-Z\s]*"
-                      autoComplete="off"
-                    />
-                  </label>
+                  </form>
+                </>
+              ) : ''}
 
-                  <label className="input-label" htmlFor="email-input">
-                    <span className="label-title">E-mail</span>
-                    <input
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Ex: vanderlei.lopes@gmail.com"
-                      type="text"
-                      id="email-input"
-                      required
-                      autoComplete="off"
-                    />
-                  </label>
+              {paymentMethod === 'credit_card' ? (
+                <>
+                  <form className="payment-form">
+                    <label className="input-label" htmlFor="name-input">
+                      <span className="label-title">Nome completo</span>
+                      <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Ex: Vanderlei Lopes"
+                        type="text"
+                        id="name-input"
+                        required
+                        pattern="[a-zA-Z\s]*"
+                        autoComplete="off"
+                      />
+                    </label>
 
-                  <label className="input-label" htmlFor="cpf-input">
-                    <span className="label-title">CPF</span>
-                    <input
-                      value={formatedCpf}
-                      onChange={(e) => setFormatedCpf(formatCpf(e.target.value))}
-                      placeholder="Ex: 349.101.930-30"
-                      type="text"
-                      id="cpf-input"
-                    />
-                  </label>
+                    <label className="input-label" htmlFor="email-input">
+                      <span className="label-title">E-mail</span>
+                      <input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Ex: vanderlei.lopes@gmail.com"
+                        type="text"
+                        id="email-input"
+                        required
+                        autoComplete="off"
+                      />
+                    </label>
 
-                  <label className="input-label" htmlFor="phone-input">
-                    <span className="label-title">Telefone</span>
-                    <input
-                      value={formatedPhone}
-                      onChange={(e) => setFormatedPhone(formatPhone(e.target.value))}
-                      placeholder="Ex: (47) 99787-3675"
-                      type="text"
-                      id="phone-input"
-                    />
-                  </label>
+                    <label className="input-label" htmlFor="cpf-input">
+                      <span className="label-title">CPF</span>
+                      <input
+                        value={formatedCpf}
+                        onChange={(e) => setFormatedCpf(formatCpf(e.target.value))}
+                        placeholder="Ex: 349.101.930-30"
+                        type="text"
+                        id="cpf-input"
+                      />
+                    </label>
 
-                  <button
-                    type="submit"
-                    className="button confirm"
-                    onClick={handleCreditCardProceed}
-                    disabled={!isValid}
-                  >
-                    Continuar para pagamento
-                  </button>
+                    <label className="input-label" htmlFor="phone-input">
+                      <span className="label-title">Telefone</span>
+                      <input
+                        value={formatedPhone}
+                        onChange={(e) => setFormatedPhone(formatPhone(e.target.value))}
+                        placeholder="Ex: (47) 99787-3675"
+                        type="text"
+                        id="phone-input"
+                      />
+                    </label>
 
-                </form>
-              </>
-            ) : ''}
+                    <button
+                      type="submit"
+                      className="button confirm"
+                      onClick={handleCreditCardProceed}
+                      disabled={!isValid}
+                    >
+                      Continuar para pagamento
+                    </button>
 
+                  </form>
+                </>
+              ) : ''}
+
+            </div>
           </div>
         </div>
-      </div>
+      ) : ''}
     </div>
   );
 }
