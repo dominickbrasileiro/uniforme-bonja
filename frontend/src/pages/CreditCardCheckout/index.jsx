@@ -67,7 +67,8 @@ function Checkout() {
     }
   }, [holderName, number, expiry, cvv]);
 
-  async function handleConfirm() {
+  async function handleConfirm(e) {
+    e.preventDefault();
     const button = document.getElementById('creditcard-confirm-button');
     button.disabled = true;
 

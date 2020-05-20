@@ -170,11 +170,13 @@ function Home() {
                           value={moletomSize}
                           onChange={(e) => setMoletomSize(e.target.value)}
                         >
+                          <option value="14">14</option>
                           <option value="PP">PP</option>
                           <option value="P">P</option>
                           <option value="M">M</option>
                           <option value="G">G</option>
                           <option value="GG">GG</option>
+                          <option value="XG">XG</option>
                         </select>
                       </div>
                       <Counter value={moletomAmount} setFunction={setMoletomAmount} />
@@ -199,6 +201,15 @@ function Home() {
                           <option value="M">M</option>
                           <option value="G">G</option>
                           <option value="GG">GG</option>
+                          <option value="XG">XG</option>
+                          <option value="ESP">ESP</option>
+                          <option value="PP BABY LOOK">PP BABY LOOK</option>
+                          <option value="P BABY LOOK">P BABY LOOK</option>
+                          <option value="M BABY LOOK">M BABY LOOK</option>
+                          <option value="G BABY LOOK">G BABY LOOK</option>
+                          <option value="GG BABY LOOK">GG BABY LOOK</option>
+                          <option value="XG BABY LOOK">XG BABY LOOK</option>
+                          <option value="ESP BABY LOOK">ESP BABY LOOK</option>
                         </select>
                       </div>
                       <Counter value={camisa1Amount} setFunction={setCamisa1Amount} />
@@ -223,6 +234,15 @@ function Home() {
                           <option value="M">M</option>
                           <option value="G">G</option>
                           <option value="GG">GG</option>
+                          <option value="XG">XG</option>
+                          <option value="ESP">ESP</option>
+                          <option value="PP BABY LOOK">PP BABY LOOK</option>
+                          <option value="P BABY LOOK">P BABY LOOK</option>
+                          <option value="M BABY LOOK">M BABY LOOK</option>
+                          <option value="G BABY LOOK">G BABY LOOK</option>
+                          <option value="GG BABY LOOK">GG BABY LOOK</option>
+                          <option value="XG BABY LOOK">XG BABY LOOK</option>
+                          <option value="ESP BABY LOOK">ESP BABY LOOK</option>
                         </select>
                       </div>
                       <Counter value={camisa2Amount} setFunction={setCamisa2Amount} />
@@ -244,6 +264,7 @@ function Home() {
                           <option value="M">M</option>
                           <option value="G">G</option>
                           <option value="GG">GG</option>
+                          <option value="XG">XG</option>
                         </select>
                       </div>
                       <Counter value={corta1Amount} setFunction={setCorta1Amount} />
@@ -265,6 +286,7 @@ function Home() {
                           <option value="M">M</option>
                           <option value="G">G</option>
                           <option value="GG">GG</option>
+                          <option value="XG">XG</option>
                         </select>
                       </div>
                       <Counter value={corta2Amount} setFunction={setCorta2Amount} />
@@ -281,11 +303,15 @@ function Home() {
                       <div className="sizes">
                         <span>Tamanho:</span>
                         <select value={calcaSize} onChange={(e) => setCalcaSize(e.target.value)}>
-                          <option value="PP">PP</option>
-                          <option value="P">P</option>
-                          <option value="M">M</option>
-                          <option value="G">G</option>
-                          <option value="GG">GG</option>
+                          <option value="PP - Feminina">PP - Feminina</option>
+                          <option value="P - Feminina">P - Feminina</option>
+                          <option value="M - Feminina">M - Feminina</option>
+                          <option value="G - Feminina">G - Feminina</option>
+                          <option value="GG - Feminina">GG - Feminina</option>
+                          <option value="P - Masculina">P - Masculina</option>
+                          <option value="M - Masculina">M - Masculina</option>
+                          <option value="G - Masculina">G - Masculina</option>
+                          <option value="GG - Masculina">GG - Masculina</option>
                         </select>
                       </div>
                       <Counter value={calcaAmount} setFunction={setCalcaAmount} />

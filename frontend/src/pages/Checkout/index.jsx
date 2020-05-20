@@ -57,7 +57,8 @@ function Checkout() {
     }
   }, [name, email, cpfValue, phone]);
 
-  async function handleBoleto() {
+  async function handleBoleto(e) {
+    e.preventDefault();
     const button = document.getElementById('boleto-confirm-button');
     button.disabled = true;
 
@@ -87,7 +88,7 @@ function Checkout() {
 
       setTimeout(() => {
         history.push(`/boletos/${demandId}?g=1`);
-      }, 8000);
+      }, 2500);
     } catch (error) {
       let message = '';
 
@@ -199,6 +200,7 @@ function Checkout() {
                     type="submit"
                     className="button confirm"
                     id="boleto-confirm-button"
+                    onClick={handleBoleto}
                     disabled={!isValid}
                   >
                     <ReactLoading
@@ -217,7 +219,7 @@ function Checkout() {
 
             {paymentMethod === 'credit_card' ? (
               <>
-                <form className="payment-form" onSubmit={handleCreditCardProceed}>
+                <form className="payment-form">
                   <label className="input-label" htmlFor="name-input">
                     <span className="label-title">Nome completo</span>
                     <input
@@ -270,6 +272,7 @@ function Checkout() {
                   <button
                     type="submit"
                     className="button confirm"
+                    onClick={handleCreditCardProceed}
                     disabled={!isValid}
                   >
                     Continuar para pagamento

@@ -34,21 +34,7 @@ function Boleto() {
 
         setBoleto(boletoResult.data);
       } catch (error) {
-        let message = '';
-
-        try {
-          message = error.response.data.error;
-        } catch (err) {
-          message = 'Não foi possível vizualizar o seu boleto. Verifique sua conexão e tente novamente.';
-        }
-
-        const parsed = queryString.stringify({
-          title: 'Erro ao vizualizar boleto',
-          message,
-          from: '/',
-        });
-
-        history.push(`/error?${parsed}`);
+        history.push('/');
       }
     }
     fetchData();
