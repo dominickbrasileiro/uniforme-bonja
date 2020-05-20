@@ -40,6 +40,7 @@ routes.post('/recover_pin/:enrollment', RecoverPinValidator, RecoverPin);
 
 routes.use(authMiddleware);
 
+routes.get('/demands/:demandId', DemandController.show);
 routes.post('/demands', DemandValidator.store, DemandController.store);
 routes.delete('/demands/:id', DemandController.delete);
 
