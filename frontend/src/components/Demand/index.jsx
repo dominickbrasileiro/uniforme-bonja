@@ -17,7 +17,7 @@ function Demand({ demand }) {
   }, [status]);
 
   function handleClickPayment() {
-    history.push(`/demands/checkout/${demand._id}?amount=${demand.price}`);
+    history.push(`/demands/checkout/${demand._id}`);
   }
 
   function handleClickCancel() {

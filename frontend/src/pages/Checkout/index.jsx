@@ -137,7 +137,6 @@ function Checkout() {
       email,
       cpf: cpfValue,
       phone,
-      amount,
     });
 
     history.push(`/checkout/credit_card/${demandId}?${parsed}`);

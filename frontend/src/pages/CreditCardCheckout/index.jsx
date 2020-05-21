@@ -21,7 +21,7 @@ function Checkout() {
   const [isLoading, setLoading] = useState(false);
 
   const { demandId } = useParams();
-  const demandPrice = useQuery().get('amount');
+  const [amount, setAmount] = useState(0);
   const cpf = useQuery().get('cpf');
   const email = useQuery().get('email');
   const name = useQuery().get('name');
@@ -33,6 +33,31 @@ function Checkout() {
   const [holderName, setHolderName] = useState('');
   const [number, setNumber] = useState('');
   const [installments, setInstallments] = useState(1);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const demandResult = await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/demands/${demandId}`,
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+
+        const isDeleted = demandResult.data.deleted;
+
+        if (!isDeleted) {
+          setAmount(demandResult.data.price);
+        } else {
+          history.push('/');
+        }
+      } catch (error) {
+        history.push('/');
+      }
+    }
+    fetchData();
+  }, [demandId]);
 
   useEffect(() => {
     const date = formatedExpiry.replace(/[/]/g, '');
@@ -130,114 +155,116 @@ function Checkout() {
 
   return (
     <div className="checkout-creditcard-container">
-      <div className="checkout-creditcard-content">
-        <div className="title">
-          <Link to="/">
-            <MdArrowBack size={22} />
-          </Link>
-          <span className="text">Cartão de Crédito</span>
-        </div>
+      {amount ? (
+        <div className="checkout-creditcard-content">
+          <div className="title">
+            <Link to="/">
+              <MdArrowBack size={22} />
+            </Link>
+            <span className="text">Cartão de Crédito</span>
+          </div>
 
-        <div className="message">
-          <form className="creditcard-form" onSubmit={handleConfirm}>
-            <label className="input-label" htmlFor="name-input">
-              <span className="label-title">Nome do Titular</span>
-              <input
-                value={holderName}
-                onChange={(e) => setHolderName((e.target.value).toUpperCase())}
-                placeholder="Ex: VANDERLEI LOPES"
-                type="text"
-                id="name-input"
-                required
-                pattern="[a-zA-Z\s]*"
-                autoComplete="off"
-              />
-            </label>
+          <div className="message">
+            <form className="creditcard-form" onSubmit={handleConfirm}>
+              <label className="input-label" htmlFor="name-input">
+                <span className="label-title">Nome do Titular</span>
+                <input
+                  value={holderName}
+                  onChange={(e) => setHolderName((e.target.value).toUpperCase())}
+                  placeholder="Ex: VANDERLEI LOPES"
+                  type="text"
+                  id="name-input"
+                  required
+                  pattern="[a-zA-Z\s]*"
+                  autoComplete="off"
+                />
+              </label>
 
-            <label className="input-label" htmlFor="number-input">
-              <span className="label-title">Número do Cartão</span>
-              <input
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
-                placeholder="XXXXXXXXXXXXXXXX"
-                minLength={7}
-                maxLength={19}
-                type="text"
-                id="number-input"
-              />
-            </label>
+              <label className="input-label" htmlFor="number-input">
+                <span className="label-title">Número do Cartão</span>
+                <input
+                  value={number}
+                  onChange={(e) => setNumber(e.target.value)}
+                  placeholder="XXXXXXXXXXXXXXXX"
+                  minLength={7}
+                  maxLength={19}
+                  type="text"
+                  id="number-input"
+                />
+              </label>
 
-            <label className="input-label" htmlFor="group-input">
-              <span className="label-title">Parcelas</span>
-              <select
-                value={installments}
-                onChange={(e) => setInstallments(e.target.value)}
+              <label className="input-label" htmlFor="group-input">
+                <span className="label-title">Parcelas</span>
+                <select
+                  value={installments}
+                  onChange={(e) => setInstallments(e.target.value)}
+                >
+                  <option value={1}>
+                    1x de
+                    {' '}
+                    {formatBRL(amount)}
+                  </option>
+
+                  <option value={2}>
+                    2x de
+                    {' '}
+                    {formatBRL(amount / 2)}
+                  </option>
+
+                  <option value={3}>
+                    3x de
+                    {' '}
+                    {formatBRL(amount / 3)}
+                  </option>
+                </select>
+              </label>
+
+              <label className="input-label" htmlFor="expiry-input">
+                <span className="label-title">Validade</span>
+                <input
+                  value={formatedExpiry}
+                  onChange={(e) => setFormatedExpiry(formatExpiry(e.target.value))}
+                  placeholder="MM/YY"
+                  type="text"
+                  id="expiry-input"
+                />
+              </label>
+
+              <label className="input-label" htmlFor="cvv-input">
+                <span className="label-title">CVV</span>
+                <input
+                  value={cvv}
+                  onChange={(e) => setCvv(e.target.value)}
+                  placeholder="Ex: 398"
+                  pattern="\d*"
+                  minLength={3}
+                  maxLength={3}
+                  type="text"
+                  id="cvv-input"
+                />
+              </label>
+
+              <button
+                type="submit"
+                className="button confirm"
+                id="creditcard-confirm-button"
+                disabled={!isValid}
               >
-                <option value={1}>
-                  1x de
-                  {' '}
-                  {formatBRL(demandPrice)}
-                </option>
+                <ReactLoading
+                  className={`loading ${isLoading ? 'active' : ''}`}
+                  type="cylon"
+                  color="#fff"
+                  height="18px"
+                  width="18px"
+                />
+                Confirmar Pagamento
+              </button>
 
-                <option value={2}>
-                  2x de
-                  {' '}
-                  {formatBRL(demandPrice / 2)}
-                </option>
+            </form>
 
-                <option value={3}>
-                  3x de
-                  {' '}
-                  {formatBRL(demandPrice / 3)}
-                </option>
-              </select>
-            </label>
-
-            <label className="input-label" htmlFor="expiry-input">
-              <span className="label-title">Validade</span>
-              <input
-                value={formatedExpiry}
-                onChange={(e) => setFormatedExpiry(formatExpiry(e.target.value))}
-                placeholder="MM/YY"
-                type="text"
-                id="expiry-input"
-              />
-            </label>
-
-            <label className="input-label" htmlFor="cvv-input">
-              <span className="label-title">CVV</span>
-              <input
-                value={cvv}
-                onChange={(e) => setCvv(e.target.value)}
-                placeholder="Ex: 398"
-                pattern="\d*"
-                minLength={3}
-                maxLength={3}
-                type="text"
-                id="cvv-input"
-              />
-            </label>
-
-            <button
-              type="submit"
-              className="button confirm"
-              id="creditcard-confirm-button"
-              disabled={!isValid}
-            >
-              <ReactLoading
-                className={`loading ${isLoading ? 'active' : ''}`}
-                type="cylon"
-                color="#fff"
-                height="18px"
-                width="18px"
-              />
-              Confirmar Pagamento
-            </button>
-
-          </form>
-
+          </div>
         </div>
-      </div>
+      ) : ''}
     </div>
   );
 }
