@@ -257,7 +257,7 @@ function Checkout() {
                   height="18px"
                   width="18px"
                 />
-                Confirmar Pagamento
+                Finalizar Pagamento
               </button>
 
             </form>
