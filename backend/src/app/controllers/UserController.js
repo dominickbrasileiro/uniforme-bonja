@@ -7,19 +7,27 @@ const mailMessage = require('../../assets/js/mailMessage');
 module.exports = {
   async store(req, res) {
     const { name, enrollment, group } = req.body;
-    const userExists = await User.findOne().where({ enrollment });
+    const user = await User.findOne().where({ enrollment });
 
-    if (userExists) {
+    if (user && user.already_accessed) {
       return res.status(400).json({ error: 'Usuário já cadastrado' });
     }
 
-    const access_pin = generatePin(6);
+    let access_pin;
 
-    const user = new User({
-      name, enrollment, group, access_pin,
-    });
+    if (user && !user.already_accessed) {
+      await user.updateOne({ name, group });
 
-    await user.save();
+      access_pin = user.access_pin;
+    } else {
+      access_pin = generatePin(6);
+
+      const newUser = new User({
+        name, enrollment, group, access_pin,
+      });
+
+      await newUser.save();
+    }
 
     await promisify(SendMail)({
       to: `${name} <${enrollment}@ielusc.br>`,

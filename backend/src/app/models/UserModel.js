@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  already_accessed: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

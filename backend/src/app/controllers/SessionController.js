@@ -18,6 +18,10 @@ module.exports = {
       return res.status(400).json({ error: 'Chave de acesso incorreta' });
     }
 
+    if (!user.already_accessed) {
+      await user.updateOne({ already_accessed: true });
+    }
+
     const { id, name, admin } = user;
 
     return res.json({
