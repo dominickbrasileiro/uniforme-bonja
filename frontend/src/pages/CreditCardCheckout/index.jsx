@@ -46,8 +46,9 @@ function Checkout() {
         });
 
         const isDeleted = demandResult.data.deleted;
+        const isCreated = demandResult.data.status === 'created';
 
-        if (!isDeleted) {
+        if (!isDeleted && isCreated) {
           setAmount(demandResult.data.price);
         } else {
           history.push('/');

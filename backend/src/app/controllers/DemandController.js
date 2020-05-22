@@ -41,6 +41,10 @@ module.exports = {
       if (demand.user_id !== user_id) {
         return res.status(401).json({ statusCode: 401, error: 'Unauthorized' });
       }
+
+      if (demand.deleted || demand.status !== 'created') {
+        return res.status(400).json({ error: 'Não foi possível cancelar o pedido' });
+      }
     } catch (error) {
       return res.status(400).json({ error: 'Pedido não encontrado' });
     }

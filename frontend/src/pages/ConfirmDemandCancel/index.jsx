@@ -25,8 +25,9 @@ function ConfirmDemandCancel() {
         });
 
         const isDeleted = demandResult.data.deleted;
+        const isCreated = demandResult.data.status === 'created';
 
-        if (!isDeleted) {
+        if (!isDeleted && isCreated) {
           setDemand(demandResult.data);
         } else {
           history.push('/');
