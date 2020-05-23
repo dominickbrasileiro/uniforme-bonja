@@ -58,7 +58,7 @@ function Checkout() {
       }
     }
     fetchData();
-  }, [demandId]);
+  }, [demandId, history, token]);
 
   useEffect(() => {
     const date = formatedExpiry.replace(/[/]/g, '');

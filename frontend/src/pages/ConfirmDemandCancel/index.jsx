@@ -37,7 +37,7 @@ function ConfirmDemandCancel() {
       }
     }
     fetchData();
-  }, [demandId]);
+  }, [demandId, history, token]);
 
   async function handleCancel(event) {
     const button = event.target;

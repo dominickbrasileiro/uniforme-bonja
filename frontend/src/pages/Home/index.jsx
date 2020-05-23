@@ -73,14 +73,23 @@ function Home() {
               {firstName}
             </h2>
 
-            <Link to="/login" onClick={() => { localStorage.clear(); }} className="exit">
+            <Link
+              to="/login"
+              onClick={() => { localStorage.clear(); }}
+              className="exit"
+            >
               <FiLogOut />
               Sair
             </Link>
           </div>
 
           <section className="options-section">
-            <a className="button" href={modelosPdf} download>
+            <a
+              className="button"
+              href={modelosPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <span className="button-text">
                 Baixar modelos
                 <IoMdDownload />

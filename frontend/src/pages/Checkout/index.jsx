@@ -53,7 +53,7 @@ function Checkout() {
       }
     }
     fetchData();
-  }, [demandId]);
+  }, [demandId, history, token]);
 
   useEffect(() => {
     const number = formatedPhone.replace(/[()-\s]/g, '');
