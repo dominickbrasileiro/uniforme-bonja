@@ -9,7 +9,8 @@ import Demand from '../../components/Demand';
 import Footer from '../../components/Footer';
 
 import logo from '../../assets/imgs/logo.png';
-import modelosPdf from '../../assets/TERCEIRÃO_BONJA.pdf';
+import modelosPdf from '../../assets/TERCEIRÃO_BONJA_MODELOS.pdf';
+import medidasPdf from '../../assets/TERCEIRÃO_BONJA_MEDIDAS.pdf';
 
 import './styles.css';
 import './responsiveStyles.css';
@@ -92,6 +93,18 @@ function Home() {
             >
               <span className="button-text">
                 Baixar modelos
+                <IoMdDownload />
+              </span>
+            </a>
+
+            <a
+              className="button"
+              href={medidasPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="button-text">
+                Baixar medidas
                 <IoMdDownload />
               </span>
             </a>
