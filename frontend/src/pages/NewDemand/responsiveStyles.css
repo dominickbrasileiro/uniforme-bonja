@@ -17,6 +17,10 @@
     border-color: #0005;
     box-shadow: 0 0 5px #0002;
   }
+
+  .newdemand-container .main-content .newdemand-form .total {
+    font-size: 19px;
+  }
 }
 
 @media only screen and (min-width: 960px) {

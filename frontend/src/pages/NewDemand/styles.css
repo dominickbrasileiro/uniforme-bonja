@@ -138,16 +138,20 @@
 
 .newdemand-container .main-content .newdemand-form .option .sizes {
   margin: 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .newdemand-container .main-content .newdemand-form .option .sizes select {
   margin-left: 8px;
+  width: 55%;
 }
 
 .newdemand-container .main-content .newdemand-form .total {
   margin: 25px 0;
   text-align: center;
-  font-size: 19px;
+  font-size: 17px;
 }
 
 .newdemand-container .main-content .button {
