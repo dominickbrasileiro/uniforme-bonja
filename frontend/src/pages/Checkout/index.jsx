@@ -111,8 +111,16 @@ function Checkout() {
       });
 
       setTimeout(() => {
-        history.push(`/boletos/${demandId}?g=1`);
-      }, 2500);
+        axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/boletos/${demandId}`,
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        })
+          .then(() => history.push(`/boletos/${demandId}?g=1`))
+          .catch(() => history.push('/'));
+      }, 5000);
     } catch (error) {
       let message = '';
 
