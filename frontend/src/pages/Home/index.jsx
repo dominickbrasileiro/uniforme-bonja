@@ -3,7 +3,8 @@ import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import { IoMdDownload } from 'react-icons/io';
-import { MdCreate } from 'react-icons/md';
+import { MdPictureAsPdf, MdCreate } from 'react-icons/md';
+
 import NoDemandsText from '../../components/NoDemandsText';
 import Demand from '../../components/Demand';
 import Footer from '../../components/Footer';
@@ -87,24 +88,24 @@ function Home() {
           <section className="options-section">
             <a
               className="button"
-              href={modelosPdf}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="button-text">
-                Baixar modelos
-                <IoMdDownload />
-              </span>
-            </a>
-
-            <a
-              className="button"
               href={medidasPdf}
               target="_blank"
               rel="noopener noreferrer"
             >
               <span className="button-text">
-                Baixar medidas
+                Tabelas de medidas
+                <MdPictureAsPdf />
+              </span>
+            </a>
+
+            <a
+              className="button"
+              href={modelosPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="button-text">
+                Layouts/Modelos
                 <IoMdDownload />
               </span>
             </a>
