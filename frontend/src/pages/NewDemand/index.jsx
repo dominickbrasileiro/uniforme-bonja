@@ -32,11 +32,11 @@ function Home() {
 
   const defaultCamisa1Amount = useQuery().get('camisa1') || 0;
   const [camisa1Amount, setCamisa1Amount] = useState(defaultCamisa1Amount);
-  const [camisa1Size, setCamisa1Size] = useState('M');
+  const [camisa1Size, setCamisa1Size] = useState('M BABY LOOK');
 
   const defaultCamisa2Amount = useQuery().get('camisa2') || 0;
   const [camisa2Amount, setCamisa2Amount] = useState(defaultCamisa2Amount);
-  const [camisa2Size, setCamisa2Size] = useState('M');
+  const [camisa2Size, setCamisa2Size] = useState('M BABY LOOK');
 
   const defaultCorta1Amount = useQuery().get('corta1') || 0;
   const [corta1Amount, setCorta1Amount] = useState(defaultCorta1Amount);
