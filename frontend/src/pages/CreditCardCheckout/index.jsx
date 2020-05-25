@@ -12,6 +12,7 @@ import './styles.css';
 
 import formatExpiry from '../../utils/formatExpiry';
 import formatBRL from '../../utils/formatBRL';
+import formatName from '../../utils/formatName';
 
 function Checkout() {
   const token = localStorage.getItem('token');
@@ -68,7 +69,7 @@ function Checkout() {
 
   useEffect(() => {
     const card = {
-      card_holder_name: holderName,
+      card_holder_name: formatName(holderName),
       card_expiration_date: expiry,
       card_number: number,
       card_cvv: cvv,
@@ -107,7 +108,7 @@ function Checkout() {
     setLoading(true);
 
     const card = {
-      card_holder_name: holderName,
+      card_holder_name: formatName(holderName),
       card_expiration_date: expiry,
       card_number: number,
       card_cvv: cvv,
