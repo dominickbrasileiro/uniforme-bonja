@@ -12,8 +12,8 @@ import useQuery from '../../utils/useQuery';
 function RegisterTimer() {
   const timerValue = parseInt(useQuery().get('t'));
   const name = useQuery().get('name');
-  const enrollment = useQuery().get('enrollment');
-  const group = useQuery().get('group');
+  const email = useQuery().get('email');
+  const type = useQuery().get('type');
   const history = useHistory();
 
   useEffect(() => {
@@ -25,20 +25,21 @@ function RegisterTimer() {
           timeout: 120000,
           data: {
             name,
-            enrollment,
-            group,
+            email,
+            type,
           },
         });
 
         const parsed = queryString.stringify({
           title: 'Cadastro realizado com sucesso!',
-          message: `Chave de acesso enviada para ${enrollment}@ielusc.br`,
-          redirect: `/login?enrollment=${enrollment}`,
+          message: `Chave de acesso enviada para ${email}`,
+          redirect: `/login?email=${email}`,
           buttonText: 'Faça Login',
         });
 
         history.push(`/success?${parsed}`);
       } catch (error) {
+        console.log(error.response);
         let message = '';
 
         try {
@@ -58,7 +59,7 @@ function RegisterTimer() {
     }
 
     handleRegister();
-  }, [enrollment, group, history, name]);
+  }, [email, type, history, name]);
 
   return (
     <div className="timer-container">

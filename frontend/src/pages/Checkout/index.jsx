@@ -19,7 +19,7 @@ function Checkout() {
   const history = useHistory();
   const [paymentMethod, setPaymentMethod] = useState('');
   const [name, setName] = useState(JSON.parse(localStorage.getItem('user')).name || '');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(JSON.parse(localStorage.getItem('user')).email || '');
   const [cpfValue, setCpf] = useState('');
   const [formatedCpf, setFormatedCpf] = useState('');
   const [phone, setPhone] = useState('');
@@ -179,7 +179,7 @@ function Checkout() {
 
               {paymentMethod === 'boleto' ? (
                 <>
-                  <form className="payment-form" onSubmit={handleBoleto}>
+                  <form className="payment-form" onSubmit={handleBoleto} autoComplete="off">
                     <label className="input-label" htmlFor="name-input">
                       <span className="label-title">Nome completo</span>
                       <input
@@ -215,6 +215,8 @@ function Checkout() {
                         placeholder="Ex: 349.101.930-30"
                         type="text"
                         id="cpf-input"
+                        required
+                        autoComplete="off"
                       />
                     </label>
 
@@ -226,6 +228,8 @@ function Checkout() {
                         placeholder="Ex: (47) 99787-3675"
                         type="text"
                         id="phone-input"
+                        required
+                        autoComplete="off"
                       />
                     </label>
 
@@ -252,7 +256,7 @@ function Checkout() {
 
               {paymentMethod === 'credit_card' ? (
                 <>
-                  <form className="payment-form">
+                  <form className="payment-form" autoComplete="off">
                     <label className="input-label" htmlFor="name-input">
                       <span className="label-title">Nome completo</span>
                       <input
@@ -288,6 +292,8 @@ function Checkout() {
                         placeholder="Ex: 349.101.930-30"
                         type="text"
                         id="cpf-input"
+                        required
+                        autoComplete="off"
                       />
                     </label>
 
@@ -299,6 +305,8 @@ function Checkout() {
                         placeholder="Ex: (47) 99787-3675"
                         type="text"
                         id="phone-input"
+                        required
+                        autoComplete="off"
                       />
                     </label>
 

@@ -5,14 +5,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  enrollment: {
+  email: {
     type: String,
     required: true,
     unique: true,
   },
-  group: {
+  type: {
     type: String,
     required: true,
+    default: 'student',
   },
   access_pin: {
     type: String,

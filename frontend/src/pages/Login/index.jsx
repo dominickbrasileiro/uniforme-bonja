@@ -9,8 +9,8 @@ import './styles.css';
 import useQuery from '../../utils/useQuery';
 
 function Login() {
-  const initialEnrollment = useQuery().get('enrollment') || '';
-  const [enrollment, setEnrollment] = useState(initialEnrollment);
+  const initialEmail = useQuery().get('email') || '';
+  const [email, setEmail] = useState(initialEmail);
   const [accessPin, setAccessPin] = useState('');
   const history = useHistory();
 
@@ -21,7 +21,7 @@ function Login() {
 
     try {
       const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/sessions`, {
-        enrollment,
+        email,
         access_pin: accessPin,
       });
 
@@ -54,19 +54,16 @@ function Login() {
 
         <div className="login-form">
           <h1 className="main__title">Terceirão Bonja 2020</h1>
-          <form onSubmit={handleLogin}>
-            <label className="input-label" htmlFor="enrollment-input">
-              <span className="label-title">Matrícula</span>
+          <form onSubmit={handleLogin} autoComplete="off">
+            <label className="input-label" htmlFor="email-input">
+              <span className="label-title">E-mail</span>
               <input
-                value={enrollment}
-                onChange={(e) => setEnrollment(e.target.value)}
-                placeholder="Ex: 20180361"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Ex: email@example.com"
                 type="text"
-                id="enrollment-input"
+                id="email-input"
                 required
-                minLength={8}
-                maxLength={8}
-                pattern="(^20[0, 1][0-9]+)|(^2020[0-9]+)"
                 autoComplete="off"
                 autoCorrect="off"
               />

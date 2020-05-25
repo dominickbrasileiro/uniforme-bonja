@@ -192,6 +192,8 @@ function Checkout() {
                   maxLength={19}
                   type="text"
                   id="number-input"
+                  required
+                  autoComplete="off"
                 />
               </label>
 
@@ -229,6 +231,8 @@ function Checkout() {
                   placeholder="MM/YY"
                   type="text"
                   id="expiry-input"
+                  required
+                  autoComplete="off"
                 />
               </label>
 
@@ -243,6 +247,8 @@ function Checkout() {
                   maxLength={3}
                   type="text"
                   id="cvv-input"
+                  required
+                  autoComplete="off"
                 />
               </label>
 

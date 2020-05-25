@@ -36,7 +36,7 @@ routes.post('/checkout/postback', Postback);
 
 routes.post('/users', UserValidator.store, UserController.store);
 routes.post('/sessions', bruteForce.prevent, SessionValidator.store, SessionController.store);
-routes.post('/recover_pin/:enrollment', RecoverPinValidator, RecoverPin);
+routes.post('/recover_pin/', RecoverPinValidator, RecoverPin);
 
 routes.use(authMiddleware);
 

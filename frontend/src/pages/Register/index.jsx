@@ -7,16 +7,16 @@ import './styles.css';
 
 function Register() {
   const [name, setName] = useState('');
-  const [enrollment, setEnrollment] = useState('');
-  const [group, setGroup] = useState('3A');
+  const [email, setEmail] = useState('');
+  const [type, setType] = useState('student');
   const history = useHistory();
 
   async function handleRegister(event) {
     event.preventDefault();
     const parsed = queryString.stringify({
       name,
-      enrollment,
-      group,
+      email,
+      type,
       t: 120000,
     });
     history.push(`/r_timer?${parsed}`);
@@ -28,7 +28,7 @@ function Register() {
 
         <div className="register-form">
           <h1 className="main__title">Terceirão Bonja 2020</h1>
-          <form onSubmit={handleRegister}>
+          <form onSubmit={handleRegister} autoComplete="off">
             <label className="input-label" htmlFor="name-input">
               <span className="label-title">Nome completo</span>
               <input
@@ -44,33 +44,29 @@ function Register() {
             </label>
 
 
-            <label className="input-label" htmlFor="enrollment-input">
-              <span className="label-title">Matrícula</span>
+            <label className="input-label" htmlFor="email-input">
+              <span className="label-title">E-mail</span>
               <input
-                value={enrollment}
-                onChange={(e) => setEnrollment(e.target.value)}
-                placeholder="Ex: 20180361"
-                type="text"
-                id="enrollment-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Ex: email@example.com"
+                type="email"
+                id="email-input"
                 required
-                minLength={8}
-                maxLength={8}
-                pattern="(^20[0, 1][0-9]+)|(^2020[0-9]+)"
                 autoComplete="off"
                 autoCorrect="off"
               />
             </label>
 
-            <label className="input-label" htmlFor="group-input">
-              <span className="label-title">Turma</span>
+            <label className="input-label" htmlFor="type-input">
+              <span className="label-title">Eu sou:</span>
               <select
-                value={group}
-                onChange={(e) => setGroup(e.target.value)}
-                id="group-input"
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+                id="type-input"
               >
-                <option value="3A">3A</option>
-                <option value="3B">3B</option>
-                <option value="3C">3C</option>
+                <option value="student">Aluno</option>
+                <option value="teacher">Professor</option>
               </select>
             </label>
 

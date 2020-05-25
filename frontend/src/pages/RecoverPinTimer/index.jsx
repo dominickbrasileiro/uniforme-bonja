@@ -11,7 +11,7 @@ import useQuery from '../../utils/useQuery';
 
 function RecoverPinTimer() {
   const timerValue = parseInt(useQuery().get('t'));
-  const enrollment = useQuery().get('enrollment');
+  const email = useQuery().get('email');
   const history = useHistory();
 
   useEffect(() => {
@@ -19,14 +19,15 @@ function RecoverPinTimer() {
       try {
         await axios({
           method: 'post',
-          url: `${process.env.REACT_APP_API_URL}/recover_pin/${enrollment}`,
+          url: `${process.env.REACT_APP_API_URL}/recover_pin`,
+          data: { email },
           timeout: 120000,
         });
 
         const parsed = queryString.stringify({
           title: 'E-mail enviado com sucesso!',
-          message: `Chave de acesso enviada para ${enrollment}@ielusc.br`,
-          redirect: `/login?enrollment=${enrollment}`,
+          message: `Chave de acesso enviada para ${email}`,
+          redirect: `/login?email=${email}`,
           buttonText: 'Faça Login',
         });
 
@@ -51,7 +52,7 @@ function RecoverPinTimer() {
     }
 
     handleRegister();
-  }, [enrollment, history]);
+  }, [email, history]);
 
   return (
     <div className="timer-container">

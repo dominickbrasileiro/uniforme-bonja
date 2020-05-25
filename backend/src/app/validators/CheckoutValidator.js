@@ -7,7 +7,7 @@ module.exports = {
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
       cpf: Joi.string().length(11).required(),
-      email: Joi.string().email().required(),
+      email: Joi.string().email({ minDomainSegments: 1 }).required(),
       phone: Joi.string().min(13).max(14).regex(PHONE_REGEX),
       payment_method: Joi.string().valid('boleto', 'credit_card').required(),
 

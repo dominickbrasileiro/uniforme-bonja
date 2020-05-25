@@ -6,9 +6,9 @@ const User = require('../models/UserModel');
 
 module.exports = {
   async store(req, res) {
-    const { enrollment, access_pin } = req.body;
+    const { email, access_pin } = req.body;
 
-    const user = await User.findOne().where({ enrollment });
+    const user = await User.findOne().where({ email });
 
     if (!user) {
       return res.status(400).json({ error: 'Usuário não encontrado' });
@@ -25,7 +25,7 @@ module.exports = {
     const { id, name, admin } = user;
 
     return res.json({
-      user: { name, enrollment, admin },
+      user: { name, email, admin },
       token: jwt.sign({ id, admin }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }),
