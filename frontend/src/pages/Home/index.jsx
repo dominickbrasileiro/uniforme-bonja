@@ -18,8 +18,8 @@ import './responsiveStyles.css';
 
 function Home() {
   const [demands, setDemands] = useState([]);
+  const [viewDeleted, setViewDeleted] = useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
-
 
   function loadDemands() {
     const token = localStorage.getItem('token');
@@ -46,9 +46,41 @@ function Home() {
 
   const [firstName] = user.name.split(' ');
 
+  function checkDeletedDemandsRendering() {
+    if (demands.length <= 1) return false;
+
+    const existsDeleted = demands.reduce((acc, demand) => {
+      if (demand.deleted) return true;
+
+      return acc;
+    }, false);
+
+    const existsNotDeleted = demands.reduce((acc, demand) => {
+      if (!demand.deleted) return true;
+
+      return acc;
+    }, false);
+
+    return existsDeleted && existsNotDeleted;
+  }
+
   function renderDemands() {
     const localDemands = [...demands];
-    return localDemands.map((demand) => (
+
+    const filteredDemands = localDemands.filter((demand) => {
+      if (
+        localDemands.length > 1
+        && !viewDeleted
+        && demand.deleted
+        && checkDeletedDemandsRendering()
+      ) {
+        return false;
+      }
+
+      return true;
+    });
+
+    return filteredDemands.map((demand) => (
       <Demand
         key={demand._id}
         demand={demand}
@@ -119,7 +151,22 @@ function Home() {
           </section>
 
           <section className="demands-section">
-            <h3 className="demands-section-title">Meus pedidos</h3>
+            <div className="row">
+              <h3 className="demands-section-title">Meus pedidos</h3>
+
+              {checkDeletedDemandsRendering() ? (
+                <label htmlFor="view-deleted" className="view-deleted">
+                  <input
+                    type="checkbox"
+                    id="view-deleted"
+                    checked={viewDeleted}
+                    onChange={(e) => setViewDeleted(e.target.checked)}
+                  />
+                  Vizualizar cancelados
+                </label>
+              ) : ''}
+
+            </div>
             <div className="demands">
               {demands.length <= 0 ? <NoDemandsText /> : ''}
               {renderDemands()}

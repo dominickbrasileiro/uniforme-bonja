@@ -110,9 +110,30 @@
   margin-left: 5px;
 }
 
+.home-container .main-content .demands-section > .row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .home-container .main-content .demands-section-title {
   user-select: none;
   font-size: 21px;
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
+}
+
+.home-container .main-content .demands-section label.view-deleted {
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-container .main-content .demands-section label.view-deleted input[type="checkbox"]{
+  margin-right: 8px;
+  height: 2em;
+  transform: scale(1.1);
 }
