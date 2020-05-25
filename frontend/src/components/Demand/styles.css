@@ -1,6 +1,10 @@
 .deleted * {
   text-decoration: line-through !important;
-  opacity: 0.8 !important;
+  color: #e62e1a !important;
+}
+
+.deleted {
+  opacity: 0.8;
 }
 
 .demand-container .card {

@@ -33,7 +33,14 @@ function Home() {
       },
     })
       .then((res) => {
-        setDemands(res.data);
+        const demandsResult = res.data;
+
+        const deletedDemands = demandsResult.filter((demand) => demand.deleted);
+        const notDeletedDemands = demandsResult.filter((demand) => !demand.deleted);
+
+        const finalDemands = [...notDeletedDemands, ...deletedDemands];
+
+        setDemands(finalDemands);
       })
       .catch();
   }
