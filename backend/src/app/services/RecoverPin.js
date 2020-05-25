@@ -4,6 +4,8 @@ const mailMessage = require('../../assets/js/recoverMailMessage');
 
 const User = require('../models/UserModel');
 
+const formatFirstName = require('../../utils/formatFirstName');
+
 module.exports = async (req, res) => {
   const { enrollment } = req.params;
   const user = await User.findOne().where({ enrollment });
@@ -18,7 +20,7 @@ module.exports = async (req, res) => {
     to: `${name} <${enrollment}@ielusc.br>`,
     subject: 'Recuperação de chave de acesso',
     html: mailMessage({
-      name, enrollment, access_pin, frontendUrl: process.env.FRONTEND_URL,
+      name: formatFirstName(name), enrollment, access_pin, frontendUrl: process.env.FRONTEND_URL,
     }),
   });
 

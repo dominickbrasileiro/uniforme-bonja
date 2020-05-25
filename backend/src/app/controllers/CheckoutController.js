@@ -4,6 +4,8 @@ const { cpf: cpfValidator } = require('cpf-cnpj-validator');
 const Demand = require('../models/DemandModel');
 const Boleto = require('../models/BoletoModel');
 
+const formatName = require('../../utils/formatName');
+
 const items = require('../../assets/items.json');
 
 module.exports = {
@@ -11,7 +13,7 @@ module.exports = {
     const demandId = req.params.id;
     const { userId } = req;
     const {
-      name,
+      name: rawName,
       cpf,
       email,
       phone,
@@ -19,6 +21,8 @@ module.exports = {
       card_hash,
       installments,
     } = req.body;
+
+    const name = formatName(rawName);
 
     const isBoleto = payment_method === 'boleto';
 

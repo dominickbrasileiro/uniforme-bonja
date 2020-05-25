@@ -9,6 +9,8 @@ import NoDemandsText from '../../components/NoDemandsText';
 import Demand from '../../components/Demand';
 import Footer from '../../components/Footer';
 
+import formatFirstName from '../../utils/formatFirstName';
+
 import logo from '../../assets/imgs/logo.png';
 import modelosPdf from '../../assets/TERCEIRÃO_BONJA_MODELOS.pdf';
 import medidasPdf from '../../assets/TERCEIRÃO_BONJA_MEDIDAS.pdf';
@@ -105,7 +107,7 @@ function Home() {
             <h2 className="welcome-text">
               Bem-vindo(a),
               {' '}
-              {firstName}
+              {formatFirstName(firstName)}
             </h2>
 
             <Link

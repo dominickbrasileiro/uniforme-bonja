@@ -4,9 +4,15 @@ const generatePin = require('../../utils/generatePin');
 const SendMail = require('../../lib/SendMail');
 const mailMessage = require('../../assets/js/mailMessage');
 
+const formatName = require('../../utils/formatName');
+const formatFirstName = require('../../utils/formatFirstName');
+
 module.exports = {
   async store(req, res) {
-    const { name, enrollment, group } = req.body;
+    const { name: rawName, enrollment, group } = req.body;
+
+    const name = formatName(rawName);
+
     const user = await User.findOne().where({ enrollment });
 
     if (user && user.already_accessed) {
@@ -33,7 +39,7 @@ module.exports = {
       to: `${name} <${enrollment}@ielusc.br>`,
       subject: 'Cadastro efetuado com sucesso!',
       html: mailMessage({
-        name, enrollment, access_pin, frontendUrl: process.env.FRONTEND_URL,
+        name: formatFirstName(name), enrollment, access_pin, frontendUrl: process.env.FRONTEND_URL,
       }),
     });
 

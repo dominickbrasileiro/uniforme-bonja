@@ -7,6 +7,7 @@ import ConfirmNewDemand from '../../components/ConfirmNewDemand';
 import Counter from '../../components/Counter';
 import Footer from '../../components/Footer';
 
+import formatFirstName from '../../utils/formatFirstName';
 import formatBRL from '../../utils/formatBRL';
 import isObjectNotEmpty from '../../utils/isObjectNotEmpty';
 import useQuery from '../../utils/useQuery';
@@ -143,7 +144,7 @@ function Home() {
                     </Link>
                     Bem-vindo(a),
                     {' '}
-                    {firstName}
+                    {formatFirstName(firstName)}
                   </h2>
 
                   <Link to="/login" onClick={() => { localStorage.clear(); }} className="exit">
