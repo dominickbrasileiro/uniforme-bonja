@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import translateStatus from '../../utils/translateStatus';
@@ -10,11 +10,6 @@ import itemsNameAndPrice from '../../assets/items.json';
 
 function Demand({ demand }) {
   const history = useHistory();
-  const [status, setStatus] = useState(demand.status);
-
-  useEffect(() => {
-    translateStatus(status, setStatus);
-  }, [status]);
 
   function handleClickPayment() {
     history.push(`/demands/checkout/${demand._id}`);
@@ -74,7 +69,7 @@ function Demand({ demand }) {
             Situação:
             {' '}
             <span className={`status ${demand.status}`}>
-              {status}
+              {translateStatus(demand.status)}
             </span>
           </div>
         ) : ''}

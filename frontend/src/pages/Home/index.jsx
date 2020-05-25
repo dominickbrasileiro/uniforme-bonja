@@ -38,6 +38,7 @@ function Home() {
 
   useEffect(() => {
     loadDemands();
+    setInterval(loadDemands, 5000);
   }, []);
 
   if (!user) {

@@ -1,21 +1,23 @@
-export default function translateStatus(status, callback) {
+export default function translateStatus(status) {
   if (status === 'paid') {
-    callback('Pago');
+    return 'Pago';
   }
 
   if (status === 'waiting_payment') {
-    callback('Aguardando Pagamento');
+    return 'Aguardando Pagamento';
   }
 
   if (status === 'processing') {
-    callback('Em análise');
+    return 'Em análise';
   }
 
   if (status === 'refused') {
-    callback('Recusado');
+    return 'Recusado';
   }
 
   if (status === 'refunded') {
-    callback('Estornado');
+    return 'Estornado';
   }
+
+  return status;
 }

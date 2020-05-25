@@ -15,7 +15,6 @@ import formatDate from '../../utils/formatDate';
 function Boleto() {
   const history = useHistory();
   const [boleto, setBoleto] = useState({});
-  const [status, setStatus] = useState('');
   const token = localStorage.getItem('token');
   const { demandId } = useParams();
   const generated = useQuery().get('g');
@@ -38,10 +37,6 @@ function Boleto() {
     }
     fetchData();
   }, [demandId, history, token]);
-
-  useEffect(() => {
-    translateStatus(boleto.current_status, setStatus);
-  }, [boleto]);
 
   return (
     <div className="boleto-container">
@@ -78,7 +73,7 @@ function Boleto() {
 
             <div className="item">
               <span className="key">Situação:</span>
-              <span className={`value status ${boleto.current_status === 'paid' ? 'paid' : ''}`}>{status}</span>
+              <span className={`value status ${boleto.current_status === 'paid' ? 'paid' : ''}`}>{translateStatus(boleto.current_status)}</span>
             </div>
           </div>
 
