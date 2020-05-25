@@ -171,7 +171,7 @@ function Checkout() {
                 <span className="label-title">Nome do Titular</span>
                 <input
                   value={holderName}
-                  onChange={(e) => setHolderName((e.target.value).toUpperCase())}
+                  onChange={(e) => setHolderName(e.target.value)}
                   placeholder="Ex: VANDERLEI LOPES"
                   type="text"
                   id="name-input"
