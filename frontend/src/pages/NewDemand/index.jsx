@@ -163,7 +163,6 @@ function Home() {
                           <img src={moletom} alt="Moletom Terceirão Bonja 2020" />
                         </div>
                         <span className="name">{items.moletom.name}</span>
-                        <span className="price">{formatBRL(items.moletom.price)}</span>
                       </div>
                       <div className="sizes">
                         <span>Tamanho:</span>
@@ -180,6 +179,11 @@ function Home() {
                           <option value="XG">XG</option>
                         </select>
                       </div>
+                      <span className="price">
+                        Preço:
+                        {' '}
+                        <strong className="value">{formatBRL(items.moletom.price)}</strong>
+                      </span>
                       <Counter value={moletomAmount} setFunction={setMoletomAmount} />
                     </div>
 
@@ -188,8 +192,14 @@ function Home() {
                         <div className="thumb">
                           <img src={camisa1} alt="Camiseta Terceirão Bonja 2020" />
                         </div>
-                        <span className="name">{items.camisa1.name}</span>
-                        <span className="price">{formatBRL(items.camisa1.price)}</span>
+                        <span className="name">
+                          {items.camisa1.name}
+                          <br />
+                          <br />
+                          <span className="camiseta-oficial">
+                            *CAMISETA OFICIAL*
+                          </span>
+                        </span>
                       </div>
                       <div className="sizes">
                         <span>Tamanho:</span>
@@ -213,6 +223,11 @@ function Home() {
                           <option value="ESP BABY LOOK">ESP BABY LOOK</option>
                         </select>
                       </div>
+                      <span className="price">
+                        Preço:
+                        {' '}
+                        <strong className="value">{formatBRL(items.camisa1.price)}</strong>
+                      </span>
                       <Counter value={camisa1Amount} setFunction={setCamisa1Amount} />
                     </div>
 
@@ -222,7 +237,6 @@ function Home() {
                           <img src={camisa2} alt="Camiseta Terceirão Bonja 2020" />
                         </div>
                         <span className="name">{items.camisa2.name}</span>
-                        <span className="price">{formatBRL(items.camisa2.price)}</span>
                       </div>
                       <div className="sizes">
                         <span>Tamanho:</span>
@@ -246,6 +260,11 @@ function Home() {
                           <option value="ESP BABY LOOK">ESP BABY LOOK</option>
                         </select>
                       </div>
+                      <span className="price">
+                        Preço:
+                        {' '}
+                        <strong className="value">{formatBRL(items.camisa2.price)}</strong>
+                      </span>
                       <Counter value={camisa2Amount} setFunction={setCamisa2Amount} />
                     </div>
 
@@ -255,7 +274,6 @@ function Home() {
                           <img src={corta1} alt="Corta vento Terceirão Bonja 2020" />
                         </div>
                         <span className="name">{items.corta1.name}</span>
-                        <span className="price">{formatBRL(items.corta1.price)}</span>
                       </div>
                       <div className="sizes">
                         <span>Tamanho:</span>
@@ -268,6 +286,11 @@ function Home() {
                           <option value="XG">XG</option>
                         </select>
                       </div>
+                      <span className="price">
+                        Preço:
+                        {' '}
+                        <strong className="value">{formatBRL(items.corta1.price)}</strong>
+                      </span>
                       <Counter value={corta1Amount} setFunction={setCorta1Amount} />
                     </div>
 
@@ -277,7 +300,6 @@ function Home() {
                           <img src={corta2} alt="Corta vento Terceirão Bonja 2020" />
                         </div>
                         <span className="name">{items.corta2.name}</span>
-                        <span className="price">{formatBRL(items.corta2.price)}</span>
                       </div>
                       <div className="sizes">
                         <span>Tamanho:</span>
@@ -290,6 +312,11 @@ function Home() {
                           <option value="XG">XG</option>
                         </select>
                       </div>
+                      <span className="price">
+                        Preço:
+                        {' '}
+                        <strong className="value">{formatBRL(items.corta2.price)}</strong>
+                      </span>
                       <Counter value={corta2Amount} setFunction={setCorta2Amount} />
                     </div>
 
@@ -299,7 +326,6 @@ function Home() {
                           <img src={calca} alt="Calça Terceirão Bonja 2020" />
                         </div>
                         <span className="name">{items.calca.name}</span>
-                        <span className="price">{formatBRL(items.calca.price)}</span>
                       </div>
                       <div className="sizes">
                         <span>Tamanho:</span>
@@ -315,11 +341,16 @@ function Home() {
                           <option value="GG - Masculina">GG - Masculina</option>
                         </select>
                       </div>
+                      <span className="price">
+                        Preço:
+                        {' '}
+                        <strong className="value">{formatBRL(items.calca.price)}</strong>
+                      </span>
                       <Counter value={calcaAmount} setFunction={setCalcaAmount} />
                     </div>
 
                     <div className="total">
-                      <span className="text">Valor:</span>
+                      <span className="text">Total:</span>
                       {' '}
                       <strong>
                         <span className="value">{formatBRL(total)}</span>
