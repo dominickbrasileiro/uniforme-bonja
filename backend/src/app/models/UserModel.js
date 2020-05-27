@@ -24,6 +24,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
+  admin: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
