@@ -12,7 +12,7 @@ function Demand({ demand }) {
   const history = useHistory();
 
   function handleClickPayment() {
-    history.push(`/demands/checkout/${demand._id}`);
+    history.push(`/checkout/${demand._id}`);
   }
 
   function handleClickCancel() {

@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import ConfirmDemandCancel from './pages/ConfirmDemandCancel';
 import NewDemand from './pages/NewDemand';
 import Checkout from './pages/Checkout';
+import PaymentMethods from './pages/PaymentMethods';
 import CreditCardCheckout from './pages/CreditCardCheckout';
 import Boleto from './pages/Boleto';
 
@@ -29,7 +30,8 @@ function Routes() {
         <Route path="/" exact component={Home} />
         <Route path="/demands/cancel/:demandId" component={ConfirmDemandCancel} />
         <Route path="/demands/new" component={NewDemand} />
-        <Route path="/demands/checkout/:demandId" component={Checkout} />
+        <Route path="/checkout/:demandId" exact component={Checkout} />
+        <Route path="/checkout/payment_methods/:demandId" component={PaymentMethods} />
         <Route path="/checkout/credit_card/:demandId" component={CreditCardCheckout} />
         <Route path="/boletos/:demandId" component={Boleto} />
       </Switch>
