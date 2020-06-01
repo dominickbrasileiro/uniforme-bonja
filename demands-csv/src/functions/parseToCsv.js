@@ -1,23 +1,19 @@
+const { parse } = require('json2csv');
+
 function parseToCsv(demands) {
-  const columns = [];
-  const rows = [];
+  const fields = [];
 
   demands.forEach((demand) => {
-    const demandColumns = Object.keys(demand);
+    const demandFields = Object.keys(demand);
 
-    demandColumns.forEach((column) => {
-      if (!columns.includes(column)) columns.push(column);
+    demandFields.forEach((column) => {
+      if (!fields.includes(column)) fields.push(column);
     });
-
-    const demandRow = Object.values(demand).join(',');
-    rows.push(demandRow);
   });
 
-  const csv = [];
-  csv.push(columns.join(','), '\n');
-  csv.push(rows.join('\n'));
+  const csv = parse(demands, fields);
 
-  return csv.join('');
+  return csv;
 }
 
 module.exports = parseToCsv;
