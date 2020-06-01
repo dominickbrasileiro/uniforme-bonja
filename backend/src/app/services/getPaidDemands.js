@@ -34,6 +34,18 @@ module.exports = async (req, res) => {
   // Clone demands object without the methods
   const demands = JSON.parse(JSON.stringify(demandsResult));
 
+  const demandsDataset = [];
+
+  demands.forEach((demand) => Object.entries(demand.items).forEach((item) => {
+    const [name, options] = item;
+
+    demandsDataset.push({
+      type: name,
+      size: options.size,
+      amount: options.amount,
+    });
+  }));
+
   const formatedDemands = demands.map((obj) => {
     const demand = { ...obj };
 
@@ -49,5 +61,8 @@ module.exports = async (req, res) => {
 
   const demandsWithOwner = await getDemandsWithOwner(formatedDemands);
 
-  return res.json(demandsWithOwner);
+  return res.json({
+    dataset: demandsDataset,
+    demands: demandsWithOwner,
+  });
 };
