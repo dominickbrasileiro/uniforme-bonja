@@ -1,0 +1,12 @@
+{
+  "owner": "Nome",
+  "type": "Peça",
+  "size": "Tamanho",
+  "amount": "Quantidade",
+  "moletom": "Moletom",
+  "camisa1": "Camiseta Oficial",
+  "camisa2": "Camiseta (Listras)",
+  "corta1": "Corta Vento (Degradê)",
+  "corta2": "Corta Vento (Preto)",
+  "calca": "Calça"
+}
