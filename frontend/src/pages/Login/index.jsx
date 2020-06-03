@@ -62,7 +62,7 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Ex: email@example.com"
-                type="text"
+                type="email"
                 id="email-input"
                 required
                 autoComplete="off"
