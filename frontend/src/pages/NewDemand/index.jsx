@@ -57,32 +57,36 @@ function Home() {
 
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem('user'));
+  const sessionExpiritation = localStorage.getItem('sessionExpiration');
 
   useEffect(() => {
-    const confirmButton = document.querySelector('.button[type="submit"]');
-    if (moletomAmount
-      || camisa1Amount
+    if (sessionExpiritation) {
+      const confirmButton = document.querySelector('.button[type="submit"]');
+      if (moletomAmount
+        || camisa1Amount
       || camisa2Amount
       || corta1Amount
       || corta2Amount
       || calcaAmount) {
-      confirmButton.disabled = false;
-    } else {
-      confirmButton.disabled = true;
+        confirmButton.disabled = false;
+      } else {
+        confirmButton.disabled = true;
+      }
+
+      const prices = [
+        moletomAmount * items.moletom.price,
+        camisa1Amount * items.camisa1.price,
+        camisa2Amount * items.camisa2.price,
+        corta1Amount * items.corta1.price,
+        corta2Amount * items.corta2.price,
+        calcaAmount * items.calca.price,
+      ];
+
+      const totalPrice = prices.reduce((accumulator, price) => accumulator + price, 0);
+      setTotal(totalPrice);
     }
-
-    const prices = [
-      moletomAmount * items.moletom.price,
-      camisa1Amount * items.camisa1.price,
-      camisa2Amount * items.camisa2.price,
-      corta1Amount * items.corta1.price,
-      corta2Amount * items.corta2.price,
-      calcaAmount * items.calca.price,
-    ];
-
-    const totalPrice = prices.reduce((accumulator, price) => accumulator + price, 0);
-    setTotal(totalPrice);
   }, [
+    sessionExpiritation,
     moletomAmount,
     camisa1Amount,
     camisa2Amount,
@@ -91,7 +95,8 @@ function Home() {
     calcaAmount,
   ]);
 
-  if (!user) {
+  if (!sessionExpiritation || Date.now() > sessionExpiritation) {
+    localStorage.clear();
     return <Redirect to="/login" />;
   }
 

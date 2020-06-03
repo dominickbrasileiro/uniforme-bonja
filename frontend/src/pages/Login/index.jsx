@@ -26,6 +26,7 @@ function Login() {
       });
 
       localStorage.setItem('token', data.token);
+      localStorage.setItem('sessionExpiration', data.sessionExpiration * 1000);
       localStorage.setItem('user', JSON.stringify(data.user));
 
       history.push('/');

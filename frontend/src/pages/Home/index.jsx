@@ -22,6 +22,7 @@ function Home() {
   const [demands, setDemands] = useState([]);
   const [viewDeleted, setViewDeleted] = useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
+  const sessionExpiritation = localStorage.getItem('sessionExpiration');
 
   function loadDemands() {
     const token = localStorage.getItem('token');
@@ -50,7 +51,8 @@ function Home() {
     setInterval(loadDemands, 5000);
   }, []);
 
-  if (!user) {
+  if (!sessionExpiritation || Date.now() > sessionExpiritation) {
+    localStorage.clear();
     return <Redirect to="/login" />;
   }
 
