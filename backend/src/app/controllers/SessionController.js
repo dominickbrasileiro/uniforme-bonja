@@ -33,11 +33,10 @@ module.exports = {
       exp: expireDate,
     }, process.env.APP_SECRET);
 
-    res.header('X-Token-Expire-Date', expireDate);
-
     return res.json({
       user: { name, email, admin },
       token,
+      sessionExpiration: expireDate,
     });
   },
 };
