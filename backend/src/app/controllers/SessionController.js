@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken');
-const authConfig = require('../../config/auth');
 
 const User = require('../models/UserModel');
-
 
 module.exports = {
   async store(req, res) {
@@ -22,13 +20,24 @@ module.exports = {
       await user.updateOne({ already_accessed: true });
     }
 
+    const now = Math.floor(Date.now() / 1000);
+
+    const expireDate = now + (30 * 60);
+
     const { id, name, admin } = user;
+
+    const token = jwt.sign({
+      id,
+      admin,
+      iat: now,
+      exp: expireDate,
+    }, process.env.APP_SECRET);
+
+    res.header('X-Token-Expire-Date', expireDate);
 
     return res.json({
       user: { name, email, admin },
-      token: jwt.sign({ id, admin }, authConfig.secret, {
-        expiresIn: authConfig.expiresIn,
-      }),
+      token,
     });
   },
 };
