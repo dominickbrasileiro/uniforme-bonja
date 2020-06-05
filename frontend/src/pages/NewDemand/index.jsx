@@ -60,7 +60,7 @@ function Home() {
   const sessionExpiritation = localStorage.getItem('sessionExpiration');
 
   useEffect(() => {
-    if (sessionExpiritation) {
+    if (sessionExpiritation && sessionExpiritation > Date.now()) {
       const confirmButton = document.querySelector('.button[type="submit"]');
       if (moletomAmount
         || camisa1Amount
@@ -84,6 +84,9 @@ function Home() {
 
       const totalPrice = prices.reduce((accumulator, price) => accumulator + price, 0);
       setTotal(totalPrice);
+    } else {
+      localStorage.clear();
+      history.push('/login');
     }
   }, [
     sessionExpiritation,
