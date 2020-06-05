@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import pagarme from 'pagarme';
@@ -5,6 +6,7 @@ import queryString from 'query-string';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { MdArrowBack } from 'react-icons/md';
 import ReactLoading from 'react-loading';
+import { useCardBrand, images } from 'react-card-brand';
 
 import useQuery from '../../utils/useQuery';
 
@@ -34,6 +36,9 @@ function Checkout() {
   const [holderName, setHolderName] = useState('');
   const [number, setNumber] = useState('');
   const [installments, setInstallments] = useState(1);
+
+  const { getSvgProps } = useCardBrand();
+  const [cardBrand, setCardBrand] = useState('');
 
   useEffect(() => {
     async function fetchData() {
@@ -75,7 +80,10 @@ function Checkout() {
       card_cvv: cvv,
     };
 
+
     const cardValidation = pagarme.validate({ card });
+
+    setCardBrand(cardValidation.card.brand);
 
     const isHolderNameValid = cardValidation.card.card_holder_name;
     const isExpiryValid = cardValidation.card.card_expiration_date;
@@ -184,17 +192,20 @@ function Checkout() {
 
               <label className="input-label" htmlFor="number-input">
                 <span className="label-title">Número do Cartão</span>
-                <input
-                  value={number}
-                  onChange={(e) => setNumber(e.target.value)}
-                  placeholder="XXXXXXXXXXXXXXXX"
-                  minLength={7}
-                  maxLength={19}
-                  type="text"
-                  id="number-input"
-                  required
-                  autoComplete="off"
-                />
+                <div className="number-group">
+                  <input
+                    value={number}
+                    onChange={(e) => setNumber(e.target.value)}
+                    placeholder="XXXXXXXXXXXXXXXX"
+                    minLength={7}
+                    maxLength={19}
+                    type="text"
+                    id="number-input"
+                    required
+                    autoComplete="off"
+                  />
+                  <svg {...getSvgProps({ type: cardBrand, images })} />
+                </div>
               </label>
 
               <label className="input-label" htmlFor="group-input">

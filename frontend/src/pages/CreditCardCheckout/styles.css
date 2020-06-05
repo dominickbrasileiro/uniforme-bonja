@@ -78,6 +78,21 @@ input, select {
   font-size: 15px;
 }
 
+.number-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.number-group input {
+  width: 100%;
+}
+
+.number-group svg {
+  margin: 8px;
+  font-size: 28px;
+}
+
 .checkout-creditcard-content .button {
   width: 100%;
   padding: 10px 20px;
