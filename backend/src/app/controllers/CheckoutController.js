@@ -48,9 +48,22 @@ module.exports = {
       return res.status(400).json({ error: 'Transação já cadastrada' });
     }
 
+
+    if (installments) {
+      const minInstallmentAmount = process.env.MIN_INSTALLMENT_AMOUNT;
+
+      let maxInstallments = Math.floor(demand.price / minInstallmentAmount);
+
+      maxInstallments = maxInstallments > 3 ? 3 : maxInstallments;
+
+      if (installments > maxInstallments) {
+        return res.status(400).json({ error: `Valor mínimo da parcela: R$ ${minInstallmentAmount},00` });
+      }
+    }
+
     const info = {};
 
-    info.amount = demand.price * 100;
+    info.amount = Math.floor(demand.price * 100);
 
     const itemsArray = [...Object.entries(demand.items)];
 

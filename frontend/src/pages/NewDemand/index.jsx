@@ -10,7 +10,6 @@ import Footer from '../../components/Footer';
 import formatFirstName from '../../utils/formatFirstName';
 import formatBRL from '../../utils/formatBRL';
 import isObjectNotEmpty from '../../utils/isObjectNotEmpty';
-import useQuery from '../../utils/useQuery';
 
 import logo from '../../assets/imgs/logo.png';
 
@@ -27,28 +26,22 @@ import './responsiveStyles.css';
 import items from '../../assets/items.json';
 
 function Home() {
-  const defaultMoletomAmount = useQuery().get('moletom') || 0;
-  const [moletomAmount, setMoletomAmount] = useState(defaultMoletomAmount);
+  const [moletomAmount, setMoletomAmount] = useState(0);
   const [moletomSize, setMoletomSize] = useState('M');
 
-  const defaultCamisa1Amount = useQuery().get('camisa1') || 0;
-  const [camisa1Amount, setCamisa1Amount] = useState(defaultCamisa1Amount);
+  const [camisa1Amount, setCamisa1Amount] = useState(0);
   const [camisa1Size, setCamisa1Size] = useState('M BABY LOOK');
 
-  const defaultCamisa2Amount = useQuery().get('camisa2') || 0;
-  const [camisa2Amount, setCamisa2Amount] = useState(defaultCamisa2Amount);
+  const [camisa2Amount, setCamisa2Amount] = useState(0);
   const [camisa2Size, setCamisa2Size] = useState('M BABY LOOK');
 
-  const defaultCorta1Amount = useQuery().get('corta1') || 0;
-  const [corta1Amount, setCorta1Amount] = useState(defaultCorta1Amount);
+  const [corta1Amount, setCorta1Amount] = useState(0);
   const [corta1Size, setCorta1Size] = useState('M');
 
-  const defaultCorta2Amount = useQuery().get('corta2') || 0;
-  const [corta2Amount, setCorta2Amount] = useState(defaultCorta2Amount);
+  const [corta2Amount, setCorta2Amount] = useState(0);
   const [corta2Size, setCorta2Size] = useState('M');
 
-  const defaultCalcaAmount = useQuery().get('calca') || 0;
-  const [calcaAmount, setCalcaAmount] = useState(defaultCalcaAmount);
+  const [calcaAmount, setCalcaAmount] = useState(0);
   const [calcaSize, setCalcaSize] = useState('M - Feminina');
 
   const [total, setTotal] = useState(0);
@@ -63,7 +56,7 @@ function Home() {
     if (sessionExpiritation && sessionExpiritation > Date.now()) {
       const confirmButton = document.querySelector('.button[type="submit"]');
       if (moletomAmount
-        || camisa1Amount
+      || camisa1Amount
       || camisa2Amount
       || corta1Amount
       || corta2Amount

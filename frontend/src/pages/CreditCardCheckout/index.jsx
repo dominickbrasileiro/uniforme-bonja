@@ -36,6 +36,7 @@ function Checkout() {
   const [holderName, setHolderName] = useState('');
   const [number, setNumber] = useState('');
   const [installments, setInstallments] = useState(1);
+  const [maxInstallments, setMaxInstallments] = useState(1);
 
   const { getSvgProps } = useCardBrand();
   const [cardBrand, setCardBrand] = useState('');
@@ -56,6 +57,12 @@ function Checkout() {
 
         if (!isDeleted && isCreated) {
           setAmount(demandResult.data.price);
+
+          const minInstallmentAmount = 50;
+
+          const _maxInstallments = Math.floor(demandResult.data.price / minInstallmentAmount);
+
+          setMaxInstallments(_maxInstallments > 3 ? 3 : _maxInstallments);
         } else {
           history.push('/');
         }
@@ -214,23 +221,22 @@ function Checkout() {
                   value={installments}
                   onChange={(e) => setInstallments(e.target.value)}
                 >
-                  <option value={1}>
-                    1x de
-                    {' '}
-                    {formatBRL(amount)}
-                  </option>
+                  {(function renderInstallments() {
+                    const options = [];
 
-                  <option value={2}>
-                    2x de
-                    {' '}
-                    {formatBRL(amount / 2)}
-                  </option>
+                    for (let i = 1; i <= maxInstallments; i += 1) {
+                      options.push((
+                        <option value={i} key={i}>
+                          {i}
+                          x de
+                          {' '}
+                          {formatBRL(amount / i)}
+                        </option>
+                      ));
+                    }
 
-                  <option value={3}>
-                    3x de
-                    {' '}
-                    {formatBRL(amount / 3)}
-                  </option>
+                    return options;
+                  }())}
                 </select>
               </label>
 
