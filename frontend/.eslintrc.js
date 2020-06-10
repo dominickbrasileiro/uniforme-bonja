@@ -33,6 +33,7 @@ module.exports = {
     "no-underscore-dangle": "off",
     "radix": "off",
     "camelcase": "off",
-    "no-restricted-globals": "off"
+    "no-restricted-globals": "off",
+    "linebreak-style": "off"
   },
 };
