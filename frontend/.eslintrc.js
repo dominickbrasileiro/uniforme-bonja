@@ -30,7 +30,6 @@ module.exports = {
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "jsx-a11y/accessible-emoji": "off",
     "no-underscore-dangle": "off",
     "radix": "off",
     "camelcase": "off",

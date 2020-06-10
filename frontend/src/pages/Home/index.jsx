@@ -48,7 +48,9 @@ function Home() {
 
   useEffect(() => {
     loadDemands();
-    setInterval(loadDemands, 5000);
+    const interval = setInterval(loadDemands, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   if (!sessionExpiritation || Date.now() > sessionExpiritation) {

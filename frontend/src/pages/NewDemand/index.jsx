@@ -89,6 +89,7 @@ function Home() {
     corta1Amount,
     corta2Amount,
     calcaAmount,
+    history,
   ]);
 
   if (!sessionExpiritation || Date.now() > sessionExpiritation) {

@@ -13,7 +13,11 @@ function Login() {
           <h1>Instruções:</h1>
 
           <div className="opt">
-            <h2>👉 Modelos</h2>
+            <h2>
+              <span role="img" aria-label="finger emoji">👉</span>
+              {' '}
+              Modelos
+            </h2>
             <ul>
               <li>
                 É necessária a compra da camiseta (manga degradê)
@@ -27,7 +31,11 @@ function Login() {
           </div>
 
           <div className="opt">
-            <h2>👉 Detalhes</h2>
+            <h2>
+              <span role="img" aria-label="finger emoji">👉</span>
+              {' '}
+              Detalhes
+            </h2>
             <ul>
               <li>
                 Devido ao formato degradê, o detalhe em cada peça fica diferente.
@@ -42,7 +50,11 @@ function Login() {
           </div>
 
           <div className="opt">
-            <h2>👉 Tamanhos</h2>
+            <h2>
+              <span role="img" aria-label="finger emoji">👉</span>
+              {' '}
+              Tamanhos
+            </h2>
             <ul>
               <li>
                 Não será aceito
@@ -63,7 +75,11 @@ function Login() {
           </div>
 
           <div className="opt">
-            <h2>👉 Pagamento</h2>
+            <h2>
+              <span role="img" aria-label="finger emoji">👉</span>
+              {' '}
+              Pagamento
+            </h2>
             <ul>
               <li>
                 No site você terá as seguintes opções de pagamento:
@@ -80,7 +96,11 @@ function Login() {
           </div>
 
           <div className="opt">
-            <h2>👉 Prazo</h2>
+            <h2>
+              <span role="img" aria-label="finger emoji">👉</span>
+              {' '}
+              Prazo
+            </h2>
             <ul>
               <li>
                 O pagamento de todos os pedidos deverá ser realizado
