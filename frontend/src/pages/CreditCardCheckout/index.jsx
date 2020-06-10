@@ -29,6 +29,14 @@ function Checkout() {
   const email = useQuery().get('email');
   const name = useQuery().get('name');
   const phone = useQuery().get('phone');
+  const country = useQuery().get('country');
+  const state = useQuery().get('state');
+  const city = useQuery().get('city');
+  const neighborhood = useQuery().get('neighborhood');
+  const street = useQuery().get('street');
+  const street_number = useQuery().get('street_number');
+  const complementary = useQuery().get('complementary');
+  const zipcode = useQuery().get('zipcode');
 
   const [cvv, setCvv] = useState('');
   const [expiry, setExpiry] = useState('');
@@ -87,7 +95,6 @@ function Checkout() {
       card_cvv: cvv,
     };
 
-
     const cardValidation = pagarme.validate({ card });
 
     setCardBrand(cardValidation.card.brand);
@@ -145,6 +152,16 @@ function Checkout() {
           email,
           phone,
           payment_method: 'credit_card',
+          billing_address: {
+            country,
+            state,
+            city,
+            neighborhood,
+            street,
+            street_number,
+            complementary,
+            zipcode,
+          },
           card_hash,
           installments,
         },

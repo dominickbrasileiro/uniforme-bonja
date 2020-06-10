@@ -14,10 +14,20 @@ function PaymentMethods() {
   const history = useHistory();
   const [isLoading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('');
+
   const name = useQuery().get('name');
   const email = useQuery().get('email');
   const cpf = useQuery().get('cpf');
   const phone = useQuery().get('phone');
+  const country = useQuery().get('country');
+  const state = useQuery().get('state');
+  const city = useQuery().get('city');
+  const neighborhood = useQuery().get('neighborhood');
+  const street = useQuery().get('street');
+  const street_number = useQuery().get('street_number');
+  const complementary = useQuery().get('complementary');
+  const zipcode = useQuery().get('zipcode');
+
   const [amount, setAmount] = useState(0);
   const { demandId } = useParams();
 
@@ -70,6 +80,16 @@ function PaymentMethods() {
           email,
           phone,
           payment_method: 'boleto',
+          billing_address: {
+            country,
+            state,
+            city,
+            neighborhood,
+            street,
+            street_number,
+            complementary,
+            zipcode,
+          },
         },
       });
 
@@ -109,6 +129,14 @@ function PaymentMethods() {
       email,
       cpf,
       phone,
+      country,
+      state,
+      city,
+      neighborhood,
+      street,
+      street_number,
+      complementary,
+      zipcode,
     });
 
     history.push(`/checkout/credit_card/${demandId}?${parsed}`);

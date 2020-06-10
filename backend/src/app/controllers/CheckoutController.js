@@ -18,6 +18,7 @@ module.exports = {
       email,
       phone,
       payment_method,
+      billing_address,
       card_hash,
       installments,
     } = req.body;
@@ -86,45 +87,43 @@ module.exports = {
       encryption_key: process.env.PAGARME_ENCRYPTION_KEY,
     });
 
-    const transaction = await client.transactions.create({
-      amount: info.amount,
-      payment_method,
-      boleto_instructions: isBoleto ? process.env.BOLETO_INSTRUCTIONS : null,
-      card_hash: !isBoleto ? card_hash : null,
-      installments: !isBoleto ? installments : null,
-      postback_url: `${process.env.PAGARME_POSTBACK_URL}/checkout/postback`,
-      metadata: {
-        demand: {
-          id: demandId,
-          owner_id: userId,
+    let transaction;
+
+    try {
+      transaction = await client.transactions.create({
+        amount: info.amount,
+        payment_method,
+        boleto_instructions: isBoleto ? process.env.BOLETO_INSTRUCTIONS : null,
+        card_hash: !isBoleto ? card_hash : null,
+        installments: !isBoleto ? installments : null,
+        postback_url: `${process.env.PAGARME_POSTBACK_URL}/checkout/postback`,
+        metadata: {
+          demand: {
+            id: demandId,
+            owner_id: userId,
+          },
         },
-      },
-      customer: {
-        external_id: userId,
-        type: 'individual',
-        country: 'br',
-        name,
-        email,
-        phone_numbers: [phone],
-        documents: [{
-          type: 'cpf',
-          number: cpf,
-        }],
-      },
-      billing: {
-        name: process.env.BILLING_NAME,
-        address: {
-          country: process.env.BILLING_COUNTRY,
-          state: process.env.BILLING_STATE,
-          city: process.env.BILLING_CITY,
-          neighborhood: process.env.BILLING_NEIGHBORHOOD,
-          street: process.env.BILLING_STREET,
-          street_number: process.env.BILLING_STREET_NUMBER,
-          zipcode: process.env.BILLING_ZIPCODE,
+        customer: {
+          external_id: userId,
+          type: 'individual',
+          country: 'br',
+          name,
+          email,
+          phone_numbers: [phone],
+          documents: [{
+            type: 'cpf',
+            number: cpf,
+          }],
         },
-      },
-      items: info.items,
-    });
+        billing: {
+          name,
+          address: billing_address,
+        },
+        items: info.items,
+      });
+    } catch (error) {
+      throw new Error(error.response);
+    }
 
     await demand.updateOne({ status: transaction.status });
 
