@@ -70,7 +70,13 @@ function Checkout() {
 
           const _maxInstallments = Math.floor(demandResult.data.price / minInstallmentAmount);
 
-          setMaxInstallments(_maxInstallments > 3 ? 3 : _maxInstallments);
+          if (_maxInstallments >= 3) {
+            setMaxInstallments(3);
+          } else if (_maxInstallments <= 1) {
+            setMaxInstallments(1);
+          } else {
+            setMaxInstallments(_maxInstallments);
+          }
         } else {
           history.push('/');
         }

@@ -55,7 +55,11 @@ module.exports = {
 
       let maxInstallments = Math.floor(demand.price / minInstallmentAmount);
 
-      maxInstallments = maxInstallments > 3 ? 3 : maxInstallments;
+      if (maxInstallments >= 3) {
+        maxInstallments = 3;
+      } else if (maxInstallments <= 1) {
+        maxInstallments = 1;
+      }
 
       if (installments > maxInstallments) {
         return res.status(400).json({ error: `Valor mínimo da parcela: R$ ${minInstallmentAmount},00` });
