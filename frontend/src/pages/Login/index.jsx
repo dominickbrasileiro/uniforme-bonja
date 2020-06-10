@@ -29,7 +29,7 @@ function Login() {
       localStorage.setItem('sessionExpiration', data.sessionExpiration * 1000);
       localStorage.setItem('user', JSON.stringify(data.user));
 
-      history.push('/');
+      history.push('/instructions');
     } catch (error) {
       let message = '';
 

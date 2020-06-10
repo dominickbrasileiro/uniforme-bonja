@@ -4,6 +4,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import SuccessMessage from './pages/SuccessMessage';
 import ErrorMessage from './pages/ErrorMessage';
 import Login from './pages/Login';
+import Instructions from './pages/Instructions';
 import Register from './pages/Register';
 import RegisterTimer from './pages/RegisterTimer';
 import RecoverPin from './pages/RecoverPin';
@@ -28,6 +29,7 @@ function Routes() {
         <Route path="/forgot_pin" component={RecoverPin} />
         <Route path="/f_timer" component={RecoverPinTimer} />
         <Route path="/" exact component={Home} />
+        <Route path="/instructions" component={Instructions} />
         <Route path="/demands/cancel/:demandId" component={ConfirmDemandCancel} />
         <Route path="/demands/new" component={NewDemand} />
         <Route path="/checkout/:demandId" exact component={Checkout} />

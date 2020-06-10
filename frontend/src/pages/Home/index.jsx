@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import { IoMdDownload } from 'react-icons/io';
-import { MdPictureAsPdf, MdCreate } from 'react-icons/md';
+import { MdDescription, MdPictureAsPdf, MdCreate } from 'react-icons/md';
 
 import NoDemandsText from '../../components/NoDemandsText';
 import Demand from '../../components/Demand';
@@ -130,6 +130,13 @@ function Home() {
           </div>
 
           <section className="options-section">
+            <Link className="button" to="/instructions">
+              <span className="button-text">
+                Instruções
+                <MdDescription />
+              </span>
+            </Link>
+
             <a
               className="button"
               href={medidasPdf}
