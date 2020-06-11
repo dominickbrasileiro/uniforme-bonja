@@ -56,11 +56,11 @@ function Home() {
     if (sessionExpiritation && sessionExpiritation > Date.now()) {
       const confirmButton = document.querySelector('.button[type="submit"]');
       if (moletomAmount
-      || camisa1Amount
-      || camisa2Amount
-      || corta1Amount
-      || corta2Amount
-      || calcaAmount) {
+        || camisa1Amount
+        || camisa2Amount
+        || corta1Amount
+        || corta2Amount
+        || calcaAmount) {
         confirmButton.disabled = false;
       } else {
         confirmButton.disabled = true;
@@ -126,250 +126,252 @@ function Home() {
   return (
     <div className="div">
       {
-      isObjectNotEmpty(finalDemand)
-        ? <ConfirmNewDemand demand={finalDemand} setFunc={setFinalDemand} />
-        : (
-          <div className="newdemand-container">
-            <div className="content">
-              <header className="header" onClick={() => history.push('/')}>
-                <div className="logo">
-                  <img src={logo} alt="Logo Terceirão Bonja 2020" />
-                </div>
-                <span className="brand">Terceirão Bonja 2020</span>
-              </header>
+        isObjectNotEmpty(finalDemand)
+          ? <ConfirmNewDemand demand={finalDemand} setFunc={setFinalDemand} />
+          : (
+            <div className="newdemand-container">
+              <div className="content">
+                <header className="header" onClick={() => history.push('/')}>
+                  <div className="logo">
+                    <img src={logo} alt="Logo Terceirão Bonja 2020" />
+                  </div>
+                  <span className="brand">Terceirão Bonja 2020</span>
+                </header>
 
-              <main className="main-content">
-                <div className="welcome-group">
-                  <h2 className="welcome-text">
-                    <Link to="/">
-                      <MdArrowBack size={24} color="#000" />
-                    </Link>
-                    Bem-vindo(a),
-                    {' '}
-                    {formatFirstName(firstName)}
-                  </h2>
-
-                  <Link to="/login" onClick={() => { localStorage.clear(); }} className="exit">
-                    <FiLogOut />
-                    Sair
-                  </Link>
-                </div>
-
-                <section className="newdemand-section">
-                  <h3 className="newdemand-section-title">Novo pedido</h3>
-                  <form className="newdemand-form" onSubmit={handleSubmit}>
-
-                    <div className={`option ${moletomAmount > 0 ? 'selected' : ''}`}>
-                      <div className="flex">
-                        <div className="thumb">
-                          <img src={moletom} alt="Moletom Terceirão Bonja 2020" />
-                        </div>
-                        <span className="name">{items.moletom.name}</span>
-                      </div>
-                      <div className="sizes">
-                        <span>Tamanho:</span>
-                        <select
-                          value={moletomSize}
-                          onChange={(e) => setMoletomSize(e.target.value)}
-                        >
-                          <option value="14">14</option>
-                          <option value="PP">PP</option>
-                          <option value="P">P</option>
-                          <option value="M">M</option>
-                          <option value="G">G</option>
-                          <option value="GG">GG</option>
-                          <option value="XG">XG</option>
-                        </select>
-                      </div>
-                      <span className="price">
-                        Preço:
-                        {' '}
-                        <strong className="value">{formatBRL(items.moletom.price)}</strong>
-                      </span>
-                      <Counter value={moletomAmount} setFunction={setMoletomAmount} />
-                    </div>
-
-                    <div className={`option ${camisa1Amount > 0 ? 'selected' : ''}`}>
-                      <div className="flex">
-                        <div className="thumb">
-                          <img src={camisa1} alt="Camiseta Terceirão Bonja 2020" />
-                        </div>
-                        <span className="name">
-                          {items.camisa1.name}
-                          <br />
-                          <br />
-                          <span className="camiseta-oficial">
-                            *CAMISETA OFICIAL*
-                          </span>
-                        </span>
-                      </div>
-                      <div className="sizes">
-                        <span>Tamanho:</span>
-                        <select
-                          value={camisa1Size}
-                          onChange={(e) => setCamisa1Size(e.target.value)}
-                        >
-                          <option value="PP">PP</option>
-                          <option value="P">P</option>
-                          <option value="M">M</option>
-                          <option value="G">G</option>
-                          <option value="GG">GG</option>
-                          <option value="XG">XG</option>
-                          <option value="ESP">ESP</option>
-                          <option value="PP BABY LOOK">PP BABY LOOK</option>
-                          <option value="P BABY LOOK">P BABY LOOK</option>
-                          <option value="M BABY LOOK">M BABY LOOK</option>
-                          <option value="G BABY LOOK">G BABY LOOK</option>
-                          <option value="GG BABY LOOK">GG BABY LOOK</option>
-                          <option value="XG BABY LOOK">XG BABY LOOK</option>
-                          <option value="ESP BABY LOOK">ESP BABY LOOK</option>
-                        </select>
-                      </div>
-                      <span className="price">
-                        Preço:
-                        {' '}
-                        <strong className="value">{formatBRL(items.camisa1.price)}</strong>
-                      </span>
-                      <Counter value={camisa1Amount} setFunction={setCamisa1Amount} />
-                    </div>
-
-                    <div className={`option ${camisa2Amount > 0 ? 'selected' : ''}`}>
-                      <div className="flex">
-                        <div className="thumb">
-                          <img src={camisa2} alt="Camiseta Terceirão Bonja 2020" />
-                        </div>
-                        <span className="name">{items.camisa2.name}</span>
-                      </div>
-                      <div className="sizes">
-                        <span>Tamanho:</span>
-                        <select
-                          value={camisa2Size}
-                          onChange={(e) => setCamisa2Size(e.target.value)}
-                        >
-                          <option value="PP">PP</option>
-                          <option value="P">P</option>
-                          <option value="M">M</option>
-                          <option value="G">G</option>
-                          <option value="GG">GG</option>
-                          <option value="XG">XG</option>
-                          <option value="ESP">ESP</option>
-                          <option value="PP BABY LOOK">PP BABY LOOK</option>
-                          <option value="P BABY LOOK">P BABY LOOK</option>
-                          <option value="M BABY LOOK">M BABY LOOK</option>
-                          <option value="G BABY LOOK">G BABY LOOK</option>
-                          <option value="GG BABY LOOK">GG BABY LOOK</option>
-                          <option value="XG BABY LOOK">XG BABY LOOK</option>
-                          <option value="ESP BABY LOOK">ESP BABY LOOK</option>
-                        </select>
-                      </div>
-                      <span className="price">
-                        Preço:
-                        {' '}
-                        <strong className="value">{formatBRL(items.camisa2.price)}</strong>
-                      </span>
-                      <Counter value={camisa2Amount} setFunction={setCamisa2Amount} />
-                    </div>
-
-                    <div className={`option ${corta1Amount > 0 ? 'selected' : ''}`}>
-                      <div className="flex">
-                        <div className="thumb">
-                          <img src={corta1} alt="Corta vento Terceirão Bonja 2020" />
-                        </div>
-                        <span className="name">{items.corta1.name}</span>
-                      </div>
-                      <div className="sizes">
-                        <span>Tamanho:</span>
-                        <select value={corta1Size} onChange={(e) => setCorta1Size(e.target.value)}>
-                          <option value="PP">PP</option>
-                          <option value="P">P</option>
-                          <option value="M">M</option>
-                          <option value="G">G</option>
-                          <option value="GG">GG</option>
-                          <option value="XG">XG</option>
-                        </select>
-                      </div>
-                      <span className="price">
-                        Preço:
-                        {' '}
-                        <strong className="value">{formatBRL(items.corta1.price)}</strong>
-                      </span>
-                      <Counter value={corta1Amount} setFunction={setCorta1Amount} />
-                    </div>
-
-                    <div className={`option ${corta2Amount > 0 ? 'selected' : ''}`}>
-                      <div className="flex">
-                        <div className="thumb">
-                          <img src={corta2} alt="Corta vento Terceirão Bonja 2020" />
-                        </div>
-                        <span className="name">{items.corta2.name}</span>
-                      </div>
-                      <div className="sizes">
-                        <span>Tamanho:</span>
-                        <select value={corta2Size} onChange={(e) => setCorta2Size(e.target.value)}>
-                          <option value="PP">PP</option>
-                          <option value="P">P</option>
-                          <option value="M">M</option>
-                          <option value="G">G</option>
-                          <option value="GG">GG</option>
-                          <option value="XG">XG</option>
-                        </select>
-                      </div>
-                      <span className="price">
-                        Preço:
-                        {' '}
-                        <strong className="value">{formatBRL(items.corta2.price)}</strong>
-                      </span>
-                      <Counter value={corta2Amount} setFunction={setCorta2Amount} />
-                    </div>
-
-                    <div className={`option ${calcaAmount > 0 ? 'selected' : ''}`}>
-                      <div className="flex">
-                        <div className="thumb">
-                          <img src={calca} alt="Calça Terceirão Bonja 2020" />
-                        </div>
-                        <span className="name">{items.calca.name}</span>
-                      </div>
-                      <div className="sizes">
-                        <span>Tamanho:</span>
-                        <select value={calcaSize} onChange={(e) => setCalcaSize(e.target.value)}>
-                          <option value="PP - Feminina">PP - Feminina</option>
-                          <option value="P - Feminina">P - Feminina</option>
-                          <option value="M - Feminina">M - Feminina</option>
-                          <option value="G - Feminina">G - Feminina</option>
-                          <option value="GG - Feminina">GG - Feminina</option>
-                          <option value="P - Masculina">P - Masculina</option>
-                          <option value="M - Masculina">M - Masculina</option>
-                          <option value="G - Masculina">G - Masculina</option>
-                          <option value="GG - Masculina">GG - Masculina</option>
-                        </select>
-                      </div>
-                      <span className="price">
-                        Preço:
-                        {' '}
-                        <strong className="value">{formatBRL(items.calca.price)}</strong>
-                      </span>
-                      <Counter value={calcaAmount} setFunction={setCalcaAmount} />
-                    </div>
-
-                    <div className="total">
-                      <span className="text">Total:</span>
+                <main className="main-content">
+                  <div className="welcome-group">
+                    <h2 className="welcome-text">
+                      <Link to="/">
+                        <MdArrowBack size={24} color="#000" />
+                      </Link>
+                      Bem-vindo(a),
                       {' '}
-                      <strong>
-                        <span className="value">{formatBRL(total)}</span>
-                      </strong>
-                    </div>
+                      {formatFirstName(firstName)}
+                    </h2>
 
-                    <button className="button" type="submit">
-                      Confirmar
-                    </button>
+                    <Link to="/login" onClick={() => { localStorage.clear(); }} className="exit">
+                      <FiLogOut />
+                      Sair
+                    </Link>
+                  </div>
 
-                  </form>
-                </section>
-              </main>
-              <Footer />
+                  <section className="newdemand-section">
+                    <h3 className="newdemand-section-title">Novo pedido</h3>
+                    <form className="newdemand-form" onSubmit={handleSubmit}>
+
+                      <div className={`option ${moletomAmount > 0 ? 'selected' : ''}`}>
+                        <div className="flex">
+                          <div className="thumb">
+                            <img src={moletom} alt="Moletom Terceirão Bonja 2020" />
+                          </div>
+                          <span className="name">{items.moletom.name}</span>
+                        </div>
+                        <div className="sizes">
+                          <span>Tamanho:</span>
+                          <select
+                            value={moletomSize}
+                            onChange={(e) => setMoletomSize(e.target.value)}
+                          >
+                            <option value="14">14</option>
+                            <option value="PP">PP</option>
+                            <option value="P">P</option>
+                            <option value="M">M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="XG">XG</option>
+                          </select>
+                        </div>
+                        <span className="price">
+                          Preço:
+                          {' '}
+                          <strong className="value">{formatBRL(items.moletom.price)}</strong>
+                        </span>
+                        <Counter value={moletomAmount} setFunction={setMoletomAmount} />
+                      </div>
+
+                      <div className={`option ${camisa1Amount > 0 ? 'selected' : ''}`}>
+                        <div className="flex">
+                          <div className="thumb">
+                            <img src={camisa1} alt="Camiseta Terceirão Bonja 2020" />
+                          </div>
+                          <span className="name">
+                            {items.camisa1.name}
+                            <br />
+                            <br />
+                            <span className="camiseta-oficial">
+                              *CAMISETA OFICIAL*
+                            </span>
+                          </span>
+                        </div>
+                        <div className="sizes">
+                          <span>Tamanho:</span>
+                          <select
+                            value={camisa1Size}
+                            onChange={(e) => setCamisa1Size(e.target.value)}
+                          >
+                            <option value="PP">PP</option>
+                            <option value="P">P</option>
+                            <option value="M">M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="XG">XG</option>
+                            <option value="ESP">ESP</option>
+                            <option value="PP BABY LOOK">PP BABY LOOK</option>
+                            <option value="P BABY LOOK">P BABY LOOK</option>
+                            <option value="M BABY LOOK">M BABY LOOK</option>
+                            <option value="G BABY LOOK">G BABY LOOK</option>
+                            <option value="GG BABY LOOK">GG BABY LOOK</option>
+                            <option value="XG BABY LOOK">XG BABY LOOK</option>
+                            <option value="ESP BABY LOOK">ESP BABY LOOK</option>
+                          </select>
+                        </div>
+                        <span className="price">
+                          Preço:
+                          {' '}
+                          <strong className="value">{formatBRL(items.camisa1.price)}</strong>
+                        </span>
+                        <Counter value={camisa1Amount} setFunction={setCamisa1Amount} />
+                      </div>
+
+                      <div className={`option ${camisa2Amount > 0 ? 'selected' : ''}`}>
+                        <div className="flex">
+                          <div className="thumb">
+                            <img src={camisa2} alt="Camiseta Terceirão Bonja 2020" />
+                          </div>
+                          <span className="name">{items.camisa2.name}</span>
+                        </div>
+                        <div className="sizes">
+                          <span>Tamanho:</span>
+                          <select
+                            value={camisa2Size}
+                            onChange={(e) => setCamisa2Size(e.target.value)}
+                          >
+                            <option value="PP">PP</option>
+                            <option value="P">P</option>
+                            <option value="M">M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="XG">XG</option>
+                            <option value="ESP">ESP</option>
+                            <option value="PP BABY LOOK">PP BABY LOOK</option>
+                            <option value="P BABY LOOK">P BABY LOOK</option>
+                            <option value="M BABY LOOK">M BABY LOOK</option>
+                            <option value="G BABY LOOK">G BABY LOOK</option>
+                            <option value="GG BABY LOOK">GG BABY LOOK</option>
+                            <option value="XG BABY LOOK">XG BABY LOOK</option>
+                            <option value="ESP BABY LOOK">ESP BABY LOOK</option>
+                          </select>
+                        </div>
+                        <span className="price">
+                          Preço:
+                          {' '}
+                          <strong className="value">{formatBRL(items.camisa2.price)}</strong>
+                        </span>
+                        <Counter value={camisa2Amount} setFunction={setCamisa2Amount} />
+                      </div>
+
+                      <div className={`option ${corta1Amount > 0 ? 'selected' : ''}`}>
+                        <div className="flex">
+                          <div className="thumb">
+                            <img src={corta1} alt="Corta vento Terceirão Bonja 2020" />
+                          </div>
+                          <span className="name">{items.corta1.name}</span>
+                        </div>
+                        <div className="sizes">
+                          <span>Tamanho:</span>
+                          <select value={corta1Size} onChange={(e) => setCorta1Size(e.target.value)}>
+                            <option value="14">14</option>
+                            <option value="PP">PP</option>
+                            <option value="P">P</option>
+                            <option value="M">M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="XG">XG</option>
+                          </select>
+                        </div>
+                        <span className="price">
+                          Preço:
+                          {' '}
+                          <strong className="value">{formatBRL(items.corta1.price)}</strong>
+                        </span>
+                        <Counter value={corta1Amount} setFunction={setCorta1Amount} />
+                      </div>
+
+                      <div className={`option ${corta2Amount > 0 ? 'selected' : ''}`}>
+                        <div className="flex">
+                          <div className="thumb">
+                            <img src={corta2} alt="Corta vento Terceirão Bonja 2020" />
+                          </div>
+                          <span className="name">{items.corta2.name}</span>
+                        </div>
+                        <div className="sizes">
+                          <span>Tamanho:</span>
+                          <select value={corta2Size} onChange={(e) => setCorta2Size(e.target.value)}>
+                            <option value="14">14</option>
+                            <option value="PP">PP</option>
+                            <option value="P">P</option>
+                            <option value="M">M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="XG">XG</option>
+                          </select>
+                        </div>
+                        <span className="price">
+                          Preço:
+                          {' '}
+                          <strong className="value">{formatBRL(items.corta2.price)}</strong>
+                        </span>
+                        <Counter value={corta2Amount} setFunction={setCorta2Amount} />
+                      </div>
+
+                      <div className={`option ${calcaAmount > 0 ? 'selected' : ''}`}>
+                        <div className="flex">
+                          <div className="thumb">
+                            <img src={calca} alt="Calça Terceirão Bonja 2020" />
+                          </div>
+                          <span className="name">{items.calca.name}</span>
+                        </div>
+                        <div className="sizes">
+                          <span>Tamanho:</span>
+                          <select value={calcaSize} onChange={(e) => setCalcaSize(e.target.value)}>
+                            <option value="PP - Feminina">PP - Feminina</option>
+                            <option value="P - Feminina">P - Feminina</option>
+                            <option value="M - Feminina">M - Feminina</option>
+                            <option value="G - Feminina">G - Feminina</option>
+                            <option value="GG - Feminina">GG - Feminina</option>
+                            <option value="P - Masculina">P - Masculina</option>
+                            <option value="M - Masculina">M - Masculina</option>
+                            <option value="G - Masculina">G - Masculina</option>
+                            <option value="GG - Masculina">GG - Masculina</option>
+                          </select>
+                        </div>
+                        <span className="price">
+                          Preço:
+                          {' '}
+                          <strong className="value">{formatBRL(items.calca.price)}</strong>
+                        </span>
+                        <Counter value={calcaAmount} setFunction={setCalcaAmount} />
+                      </div>
+
+                      <div className="total">
+                        <span className="text">Total:</span>
+                        {' '}
+                        <strong>
+                          <span className="value">{formatBRL(total)}</span>
+                        </strong>
+                      </div>
+
+                      <button className="button" type="submit">
+                        Confirmar
+                      </button>
+
+                    </form>
+                  </section>
+                </main>
+                <Footer />
+              </div>
             </div>
-          </div>
-        )
+          )
       }
     </div>
   );
