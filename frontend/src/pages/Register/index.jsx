@@ -38,7 +38,6 @@ function Register() {
                 type="text"
                 id="name-input"
                 required
-                pattern="[a-zA-Z\s]*"
                 autoComplete="off"
               />
             </label>
