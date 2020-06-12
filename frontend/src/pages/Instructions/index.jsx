@@ -104,7 +104,7 @@ function Login() {
             <ul>
               <li>
                 O pagamento de todos os pedidos deverá ser realizado
-                até o dia 18/06/2020. Não será possível cadastrar mais pedidos
+                até o dia 30/06/2020. Não será possível cadastrar mais pedidos
                 e efetuar pagamentos após este prazo.
               </li>
             </ul>
