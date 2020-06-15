@@ -98,6 +98,7 @@ module.exports = {
         amount: info.amount,
         payment_method,
         boleto_instructions: isBoleto ? process.env.BOLETO_INSTRUCTIONS : null,
+        boleto_expiration_date: process.env.BOLETO_EXPIRATION_DATE,
         card_hash: !isBoleto ? card_hash : null,
         installments: !isBoleto ? installments : null,
         postback_url: `${process.env.PAGARME_POSTBACK_URL}/checkout/postback`,
