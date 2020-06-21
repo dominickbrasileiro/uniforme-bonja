@@ -64,8 +64,8 @@ function Register() {
                 onChange={(e) => setType(e.target.value)}
                 id="type-input"
               >
-                <option value="student">Aluno</option>
-                <option value="teacher">Professor</option>
+                <option value="student">Aluno(a)</option>
+                <option value="teacher">Professor(a)</option>
               </select>
             </label>
 
