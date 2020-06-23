@@ -172,6 +172,7 @@ function Home() {
                             value={moletomSize}
                             onChange={(e) => setMoletomSize(e.target.value)}
                           >
+                            <option value="12">12</option>
                             <option value="14">14</option>
                             <option value="PP">PP</option>
                             <option value="P">P</option>
