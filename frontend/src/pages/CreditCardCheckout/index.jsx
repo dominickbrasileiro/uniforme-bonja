@@ -295,7 +295,7 @@ function Checkout() {
                 type="submit"
                 className="button confirm"
                 id="creditcard-confirm-button"
-                disabled={!isValid}
+                // disabled={!isValid}
               >
                 <ReactLoading
                   className={`loading ${isLoading ? 'active' : ''}`}
