@@ -20,7 +20,6 @@ function Checkout() {
   const token = localStorage.getItem('token');
   const encryption_key = process.env.REACT_APP_PAGARME_ENCRYPTION_KEY;
   const history = useHistory();
-  const [isValid, setValidation] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
   const { demandId } = useParams();
@@ -104,22 +103,6 @@ function Checkout() {
     const cardValidation = pagarme.validate({ card });
 
     setCardBrand(cardValidation.card.brand);
-
-    const isHolderNameValid = cardValidation.card.card_holder_name;
-    const isExpiryValid = cardValidation.card.card_expiration_date;
-    const isNumberValid = cardValidation.card.card_number;
-    const isCvvValid = cardValidation.card.card_cvv;
-
-    if (
-      isHolderNameValid
-      && isExpiryValid
-      && isNumberValid
-      && isCvvValid
-    ) {
-      setValidation(true);
-    } else {
-      setValidation(false);
-    }
   }, [holderName, number, expiry, cvv]);
 
   async function handleConfirm(e) {
@@ -295,7 +278,6 @@ function Checkout() {
                 type="submit"
                 className="button confirm"
                 id="creditcard-confirm-button"
-                // disabled={!isValid}
               >
                 <ReactLoading
                   className={`loading ${isLoading ? 'active' : ''}`}
