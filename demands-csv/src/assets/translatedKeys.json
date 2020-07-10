@@ -1,5 +1,7 @@
 {
   "owner": "Nome",
+  "email": "E-mail",
+  "tid": "TID",
   "type": "Peça",
   "size": "Tamanho",
   "amount": "Quantidade",
