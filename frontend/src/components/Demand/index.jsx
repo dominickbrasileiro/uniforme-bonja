@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 import translateStatus from '../../utils/translateStatus';
 import formatBRL from '../../utils/formatBRL';
@@ -9,19 +9,19 @@ import './styles.css';
 import itemsNameAndPrice from '../../assets/items.json';
 
 function Demand({ demand }) {
-  const history = useHistory();
+  // const history = useHistory();
 
-  function handleClickPayment() {
-    history.push(`/checkout/${demand._id}`);
-  }
+  // function handleClickPayment() {
+  //   history.push(`/checkout/${demand._id}`);
+  // }
 
-  function handleClickCancel() {
-    history.push(`/demands/cancel/${demand._id}`);
-  }
+  // function handleClickCancel() {
+  //   history.push(`/demands/cancel/${demand._id}`);
+  // }
 
-  function handleClickDetails() {
-    history.push(`/boletos/${demand._id}`);
-  }
+  // function handleClickDetails() {
+  //   history.push(`/boletos/${demand._id}`);
+  // }
 
   function renderItems() {
     const items = Object.entries(demand.items);
@@ -74,7 +74,7 @@ function Demand({ demand }) {
           </div>
         ) : ''}
 
-        {!demand.deleted && demand.payment_method === 'boleto' && demand.status !== 'paid' && demand.status !== 'refused' && demand.status !== 'created' ? (
+        {/* {!demand.deleted && demand.payment_method === 'boleto' && demand.status !== 'paid' && demand.status !== 'refused' && demand.status !== 'created' ? (
           <button
             className="details-button"
             type="button"
@@ -101,7 +101,7 @@ function Demand({ demand }) {
               Cancelar pedido
             </button>
           </>
-        ) : ''}
+        ) : ''} */}
       </div>
     </div>
   );
