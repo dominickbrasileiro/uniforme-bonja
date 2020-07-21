@@ -29,7 +29,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 📕 Projeto
 
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; O portal foi criado durante o meu último ano letivo, em meio a pandemia do COVID-19, com o intuito de facilitar o pedido do uniforme de terceirão durante o isolamento social.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Além de termos conseguido fechar as vendas e enviar os pedidos para a produção sem grandes problemas, este projeto também me proporcionou muito aprendizado técnico e burocrático, principalmente na área de pagamentos _online_ via boleto e cartão de crédito (criptografia de dados, captura de transações, _postback_, etc).
