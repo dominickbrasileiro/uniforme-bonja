@@ -14,4 +14,4 @@
 
 ---
 
-Feito por _[Dominick Brasileiro](https://discordapp.com/invite/gCRAFhc)_ 💎
+Feito por _[Dominick Brasileiro](https://www.linkedin.com/in/dominickbrasileiro/)_ 💎
