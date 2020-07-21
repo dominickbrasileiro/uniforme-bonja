@@ -3,8 +3,7 @@ import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import { IoMdDownload } from 'react-icons/io';
-import { MdDescription, MdPictureAsPdf } from 'react-icons/md';
-// import { MdCreate } from 'react-icons/md';
+import { MdDescription, MdPictureAsPdf, MdCreate } from 'react-icons/md';
 
 import NoDemandsText from '../../components/NoDemandsText';
 import Demand from '../../components/Demand';
@@ -164,12 +163,12 @@ function Home() {
               </span>
             </a>
 
-            {/* <Link className="button" to="/demands/new">
+            <Link className="button" to="/demands/new">
               <span className="button-text">
                 Novo pedido
                 <MdCreate />
               </span>
-            </Link> */}
+            </Link>
           </section>
 
           <section className="demands-section">
