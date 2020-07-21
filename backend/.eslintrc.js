@@ -16,7 +16,6 @@ module.exports = {
   },
   rules: {
     "camelcase": "off",
-    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
-    "linebreak-style": ["error", "windows"]
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
   },
 };

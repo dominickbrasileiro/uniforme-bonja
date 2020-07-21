@@ -10,12 +10,12 @@ import RegisterTimer from './pages/RegisterTimer';
 import RecoverPin from './pages/RecoverPin';
 import RecoverPinTimer from './pages/RecoverPinTimer';
 import Home from './pages/Home';
-// import ConfirmDemandCancel from './pages/ConfirmDemandCancel';
-// import NewDemand from './pages/NewDemand';
-// import Checkout from './pages/Checkout';
-// import PaymentMethods from './pages/PaymentMethods';
-// import CreditCardCheckout from './pages/CreditCardCheckout';
-// import Boleto from './pages/Boleto';
+import ConfirmDemandCancel from './pages/ConfirmDemandCancel';
+import NewDemand from './pages/NewDemand';
+import Checkout from './pages/Checkout';
+import PaymentMethods from './pages/PaymentMethods';
+import CreditCardCheckout from './pages/CreditCardCheckout';
+import Boleto from './pages/Boleto';
 
 function Routes() {
   return (
@@ -30,12 +30,12 @@ function Routes() {
         <Route path="/f_timer" component={RecoverPinTimer} />
         <Route path="/" exact component={Home} />
         <Route path="/instructions" component={Instructions} />
-        {/* <Route path="/demands/cancel/:demandId" component={ConfirmDemandCancel} /> */}
-        {/* <Route path="/demands/new" component={NewDemand} /> */}
-        {/* <Route path="/checkout/:demandId" exact component={Checkout} /> */}
-        {/* <Route path="/checkout/payment_methods/:demandId" component={PaymentMethods} /> */}
-        {/* <Route path="/checkout/credit_card/:demandId" component={CreditCardCheckout} /> */}
-        {/* <Route path="/boletos/:demandId" component={Boleto} /> */}
+        <Route path="/demands/cancel/:demandId" component={ConfirmDemandCancel} />
+        <Route path="/demands/new" component={NewDemand} />
+        <Route path="/checkout/:demandId" exact component={Checkout} />
+        <Route path="/checkout/payment_methods/:demandId" component={PaymentMethods} />
+        <Route path="/checkout/credit_card/:demandId" component={CreditCardCheckout} />
+        <Route path="/boletos/:demandId" component={Boleto} />
       </Switch>
     </HashRouter>
   );
